@@ -28,6 +28,10 @@ class PageLink(Model):
     #The page that the link is related to
     page = ForeignKey('Page')
     
+    #Display this in the admin interface
+    def __unicode__(self):
+        return self.name
+    
 #class Resume(Model):
 #    name = SlugField(max_length=64, unique=True)
 #    title = CharField(max_length=256)
