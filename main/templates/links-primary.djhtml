@@ -1,0 +1,8 @@
+      <nav class="main primary">
+        <ul>
+          {% for pl in links.primary %}
+          {% if pl.page %}<li {% if pl.page.name == page.name %}class="selected"{% endif %}><a href="{{ pl.page.get_absolute_url }}" title="{{ pl.title|escape }}">{{ pl.name }}</a></li>
+          {% else %}<li><a href="{{ pl.url|urlencode:":/@?=" }}" title="{{ pl.title|escape }}">{{ pl.name }}</a></li>
+          {% endif %}{% endfor %}
+        </ul>
+      </nav>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block header %}
+    <meta charset="utf-8" />
+
+    <title>{{ page.title }} | JSutlovic</title>
+    <meta name="description" content="{{ page.description }}" />
+    <meta name="keywords" content="Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery" />
+    <meta name="author" content="Jero Sutlovic" />
+
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+    <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+    <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.png" type="image/png" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}favicon16.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{{ STATIC_URL }}images/apple-touch-icon.png" />
+    
+    <!-- == Styles == -->
+    
+    <!-- Google Fonts -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700|PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
+    
+    <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.css" rel="stylesheet" type="text/css" />
+    <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.lozenge.css" rel="stylesheet" type="text/css" />
+    
+    <link href="{{ STATIC_URL }}styles/style.css" rel="stylesheet" type="text/css" />
+    
+    <!-- == Scripts == -->
+    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/html5shiv.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jscrollpane.min.js"></script>
+    
+    <!-- Do scrolly things -->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/scroller.js"></script>
+    
+    <!-- Menu highlight (temporary) -->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/menu.js"></script>
+    
+    {% endblock header %}
+    
+  </head>
+
+  <body id="{{ page.name }}">
+    <div class="main container {% if page.scrollable %}scroll{% endif %}">
+      <header class="main">
+        <a id="name" href="{% url jsutlovic-index %}" title="Jero Sutlovic">
+          <h1 class="full-name"><span class="gnbg"><span class="given-name">Jero</span></span> <span class="fnbg"><span class="family-name">Sutlovic</span></span></h1>
+        </a>
+      </header>
+{% include "links-primary.djhtml" %}
+  
+      <section id="contentWrap">
+        {% block page %}
+        {{ page.content|safe }}
+        {% endblock page %}
+      </section>
+        
+      <footer class="main">
+        <p>
+          Jero Sutlovic <span class="copy">&copy;</span> 2012
+        </p>
+{% include "links-secondary.djhtml" %}
+      </footer>
+    </div>
+    <!-- <div id="topbar">
+      <span>You are using a bad browser! Please see here for some excellent alternatives: <a href="#link">Firefox</a>, <a href="#chrome">Chrome</a>.</span><a href="#close" id="close">Close</a>
+    </div> -->
+  </body>
+</html>

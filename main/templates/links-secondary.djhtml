@@ -1,0 +1,7 @@
+        <nav class="secondary">
+          <ul>
+            {% for sl in links.secondary %}
+            <li><a href="{% if sl.page %}{{ sl.page.get_absolute_url }}{% else %}{{ sl.url|urlencode:":/@?=" }}{% endif %}" title="{{ sl.title|escape }}">{{ sl.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>

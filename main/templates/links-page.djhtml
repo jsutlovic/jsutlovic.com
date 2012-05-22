@@ -1,0 +1,5 @@
+          <nav class="page">
+            <ul>
+              {% for pgl in links.page %}<li><a href="{{ pgl.url }}" title="{{ pgl.title|escape }}">{{ pgl.name }}</a></li>{% endfor %}
+            </ul>
+          </nav>

@@ -1,0 +1,19 @@
+{% extends "base.djhtml" %}
+
+{% block header %}
+    {{ block.super }}
+    {{ page.header_content|safe }}
+{% endblock header %}
+
+{% block page %}
+        <header>
+          <h2 class="title">{{ page.title }}</h2>
+{% include "links-page.djhtml" %}
+        </header>
+        
+        <article id="content" class="scrollable">
+          {% block content %}
+          {{ page.content|safe }}
+          {% endblock content %}
+        </article>
+{% endblock page %}
