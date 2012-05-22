@@ -118,21 +118,17 @@ a#name h1 {
 h1.full-name span.gnbg {
   display: block;
   position: absolute;
-  top: 0px;
+  top: 5px;
   left: 0px;
   
   width: 18px;
-  height: 134px;
-  background: url("/static/images/Jero.png");
-  background-repeat: no-repeat;
-  background-position: 0 5px;
+  height: 129px;
+  background: url("/static/images/Jero2.png") repeat-x 0 0;
   overflow:hidden;
 }
 a#name:hover>h1>span.gnbg,
 a#name:focus>h1>span.gnbg {
-  background: url("/static/images/Jero_hover.png");
-  background-repeat: no-repeat;
-  background-position: 0 5px;
+  background: url("/static/images/Jero2.png") repeat-x 18px 0;
 }
 
 /* First name is displayed vertically */
@@ -158,21 +154,21 @@ h1.full-name span.given-name:first-letter {
 h1.full-name span.fnbg {
   display: block;
   position: absolute;
-  top: 0px;
+  top: 5px;
   left: 14px;
   
   width: 176px;
-  height: 40px;
-  background: url("/static/images/Sutlovic.png");
-  background-repeat: no-repeat;
-  background-position: 0 5px;  
+  height: 34px;
+  background: url("/static/images/Sutlovic2.png");
+  background-repeat: repeat-y;
+  background-position: 0 0px;
   overflow: hidden;
 }
 a#name:hover>h1>span.fnbg,
 a#name:focus>h1>span.fnbg {
-  background: url("/static/images/Sutlovic_hover.png");
-  background-repeat: no-repeat;
-  background-position: 0 5px;    
+  background: url("/static/images/Sutlovic2.png");
+  background-repeat: repeat-y;
+  background-position: 0 34px;
 }
 
 h1.full-name span.family-name {
