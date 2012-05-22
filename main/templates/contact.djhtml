@@ -1,0 +1,16 @@
+{% extends "page.djhtml" %}
+
+{% block header %}
+    {{ block.super }}
+    
+    <link href="{{ STATIC_URL }}styles/contact.css" rel="stylesheet" type="text/css" />
+    
+{% endblock header %}
+
+
+{% block content %}
+{{ block.super }}
+          {% for cdet in details %}
+          <dl class="contact-detail"><dt class="type">{{ cdet.type }}</dt> <dd class="value">{% if cdet.url %}<a href="{{ cdet.url }}">{% endif %}{{ cdet.value }}{% if cdet.url %}</a>{% endif %}</dd></dl>
+          {% endfor %}
+{% endblock %}

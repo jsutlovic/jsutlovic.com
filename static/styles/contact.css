@@ -1,0 +1,21 @@
+
+body#contact div.container.scroll section>article#content {
+  padding-left: 96px;
+}
+
+h4.contactinfo {
+  font-size: 14px;
+}
+span.nospam {
+  font-size: 10px;
+}
+
+dl.contact-detail {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+dl.contact-detail dt.type {
+  float: left;
+  width: 120px;
+}
