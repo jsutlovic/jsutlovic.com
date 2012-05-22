@@ -1,0 +1,450 @@
+* { margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+html {  }
+body { background: #d7effb url("/static/images/BGWrinkleFade3.jpg") repeat-x top center; }
+
+a { text-decoration: none; outline: 0; }
+
+br.clear { display: block; height: 0px; clear: both; }
+
+/* blue: #3772B8 */
+/* green: #84C33F */
+/* bluebg: #EAF7FD 75% */
+/* gray: #464C52 */
+/* dark gray: #19191F */
+
+
+/** Topbar **/
+div#topbar {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 18px;
+  border-bottom: 2px solid black;
+
+  background-color: #3772B8;
+  color: #FFFFFF;
+  
+  z-index: 100;
+  
+  font-family: "PT Sans Caption", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+
+  /*visibility: hidden;*/
+}
+
+div#topbar a { color: #84C33F; }
+div#topbar a:hover, div#topbar a:focus { color: #EAF7FD; }
+
+div#topbar span {
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
+
+  height: 18px;
+}
+
+a#close {
+  display: block;
+  background: url("/static/images/close.gif") no-repeat;
+  overflow: hidden;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: 2px;
+  right: 0px;
+  top: 0px;
+  font-size: 12px;
+  text-indent: 16px;
+}
+
+a#close:hover, a#close:focus {
+  background: url("/static/images/close_red.gif") no-repeat;
+}
+
+/*** Container ***/
+
+div.main.container {
+    position: relative;
+    z-index: 5;
+    margin: 0 auto;
+    width: 720px;
+    min-height: 600px;
+    
+    background-color: #d7effb;
+}
+
+div.main.container.scroll {
+  height: 100%;
+}
+
+
+/*** Header **/
+
+header.main {
+    position: relative;
+    top: 0px;
+    /*height: 80px;*/
+    height: 76px;
+    width: 100%;
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-weight: 700;
+    
+    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-bottom: 2px solid #84C33F;
+    
+    z-index: 10;
+}
+
+a#name {
+  position: absolute;
+  top: 26px;
+  left: 64px;
+  padding-top: 26px;
+  width: 194px;
+  height: 134px;
+}
+a#name h1 {
+  margin: 0;
+  padding: 0;
+}
+
+/* First name, use a background image to show text */
+h1.full-name span.gnbg {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  
+  width: 18px;
+  height: 134px;
+  background: url("/static/images/Jero.png");
+  background-repeat: no-repeat;
+  background-position: 0 5px;
+  overflow:hidden;
+}
+a#name:hover>h1>span.gnbg,
+a#name:focus>h1>span.gnbg {
+  background: url("/static/images/Jero_hover.png");
+  background-repeat: no-repeat;
+  background-position: 0 5px;
+}
+
+/* First name is displayed vertically */
+h1.full-name span.given-name {
+  display: block;
+  width: 1em;
+  font-size: 36px;
+  word-wrap: break-word;
+  letter-spacing: .5em; /* Set large letter-spacing as precaution */
+  text-align: center;
+  line-height: 75%;
+  
+  color: #464C52;
+  visibility: hidden;
+}
+/* First letter is larger */
+h1.full-name span.given-name:first-letter {
+  font-size: 48px;
+  line-height: 50px;
+  color: #84C33F;
+}
+
+h1.full-name span.fnbg {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 14px;
+  
+  width: 176px;
+  height: 40px;
+  background: url("/static/images/Sutlovic.png");
+  background-repeat: no-repeat;
+  background-position: 0 5px;  
+  overflow: hidden;
+}
+a#name:hover>h1>span.fnbg,
+a#name:focus>h1>span.fnbg {
+  background: url("/static/images/Sutlovic_hover.png");
+  background-repeat: no-repeat;
+  background-position: 0 5px;    
+}
+
+h1.full-name span.family-name {
+  display: block;
+  font-size: 36px;
+  line-height: 50px;
+  text-transform: uppercase;
+  color: #3772B8;
+  
+  visibility: hidden;
+}
+h1.full-name span.family-name:first-letter {
+  font-size: 48px;
+  line-height: 50px;
+}
+
+
+/** Primary navigation **/
+nav.main.primary {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-right: 32px;
+  font-family: 'Quattrocento Sans', sans-serif;  
+  height: 100%;
+
+  z-index: 20;
+  overflow: hidden;
+}
+
+nav.main.primary ul {
+  list-style-type: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+nav.main.primary ul li {
+  display: block;
+  float: left;
+  /*margin-left: 24px;*/
+  height: 100%;
+  padding-top: 40px;
+}
+nav.main.primary ul li a {
+  font-size: 24px;
+  font-variant: small-caps;
+  font-weight: 700;
+  padding: 12px;
+}
+
+nav.main.primary ul li:hover {
+  background-color: #CEE7B2; /* 40% #84C33F */
+  background-color: rgba(132,195,63,0.2);
+}
+
+nav.main.primary ul li.selected {
+  color: #3772B8;
+  background-color: #9DCF65; /* 80% #84C33F */
+  background-color: rgba(132,195,63,0.6);
+}
+nav.main.primary ul li.selected a {
+  color: #3772B8;
+}
+
+
+nav.primary a,
+nav.secondary a {
+  color: #84C33F;
+}
+nav.primary a:hover,
+nav.primary a:focus,
+nav.secondary a:hover,
+nav.secondary a:focus {
+  color: #3772B8;
+}
+
+
+/*** Content ***/
+
+section#contentWrap {
+  position: relative;
+  
+  font-family: "PT Sans Caption", sans-serif;
+  
+  background-color: #FFFFFF;
+  /*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0FFFFFF,endColorstr=#C0FFFFFF);*/
+  background-color: rgba(255, 255, 255, 0.75);
+  width: 100%;
+  
+  border-top: 2px solid #3772B8;
+  border-bottom: 2px solid #84C33F;
+
+  z-index: 40;
+}
+
+div.main.container.scroll section#contentWrap {
+  position: absolute;
+  top: 78px;
+  bottom: 48px;
+}
+
+section#contentWrap header {
+  position: relative;
+  height: 80px;
+  
+  z-index: 50;
+}
+
+section#contentWrap header h2.title {
+  font-variant: small-caps;
+  float: left;
+  margin-left: 120px;
+  margin-top: 22px;
+
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-size: 36px;
+  color: #464C52;
+}
+
+section#contentWrap header nav {
+  float: right;
+  margin-right: 44px;
+  margin-top: 30px;
+  font-size: 14px;
+  font-family: "PT Sans Caption", sans-serif;
+}
+
+nav.page ul {
+  list-style-type: none;
+}
+
+nav.page ul li {
+  float: left;
+  text-align: right;
+}
+
+nav.page a {
+  color: #3772B8;
+}
+nav.page a:hover,
+nav.page a:focus {
+  color: #84C33F;
+}
+
+article#content {
+  position: relative;
+  top: 0px;
+  
+  width: 656px;
+  padding: 10px 32px;
+  z-index: 50;
+
+  color: #19191F;
+  font-size: 12px;
+  outline: 0;
+  /*text-align: justify;*/
+}
+
+div.container.scroll section article#content {
+  position: absolute;
+  top: 90px;
+  bottom: 10px;
+  overflow-y: auto;
+  padding: 10px 32px;
+}
+
+article#content a { color: #3772B8; }
+article#content a:hover, article#content a:focus, article#content a:active { color: #63942E; text-decoration: underline; }
+
+article#content a.img:hover img.green,
+article#content a.img:focus img.green {
+  background-color: #84C33F;
+}
+article#content a.img:hover img.blue,
+article#content a.img:focus img.blue {
+  background-color: #3772B8;
+}
+
+article#content img {
+  padding: 4px;
+  border: 0px;
+  margin: 6px;
+}
+article#content img.left {
+  float: left;
+  margin-left: -4px;
+  margin-right: 10px;
+}
+article#content img.right {
+  float: right;
+  margin-right: -4px;
+  margin-left: 10px;
+}
+article#content img.top {
+  margin-top: 2px;
+}
+
+article#content h3 {
+  color: #464C52;
+}
+
+article#content p {
+  line-height: 1.5em;
+  margin: 0.5em 0;
+}
+
+
+.jspVerticalBar
+{
+  right: 12px;
+  width: 8px;
+}
+.jspDrag {
+  background-color: #727C85;
+}
+
+.jspHorizontalBar, .jspVerticalBar, .jspTrack {
+  background: none repeat scroll 0 0 transparent;
+}
+
+
+
+/*** Footer ***/
+
+footer.main {
+  position: relative;
+  bottom: 0px;
+  height: 46px;
+  width: 100%;
+  
+  font-family: "PT Sans Caption", sans-serif;
+  
+  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-top: 2px solid #3772B8;
+  z-index: 40;
+  
+  text-align: center;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+div.main.container.scroll footer.main {
+  position: absolute;
+}
+
+footer.main p {
+  color: #3772B8;
+  margin-top: 4px;
+  line-height: 14px;
+}
+
+footer.main nav {
+  display: inline-block;
+  width: auto;
+  margin: 4px auto;
+}
+
+footer.main nav ul {
+  list-style-type: none;
+}
+
+footer.main nav ul li {
+  display: block;
+  float: left;
+  width: 80px;
+  
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+
+
+
