@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Model, CharField, TextField, DateField, SlugField, URLField, ForeignKey, BooleanField, IntegerField, OneToOneField
+from django.db.models import Model, CharField, TextField, DateField, SlugField, URLField, ForeignKey, BooleanField, IntegerField, OneToOneField, ManyToManyField
 
 # Create your models here.
 
@@ -49,7 +49,7 @@ class Link(Model):
     
     class Meta:
         abstract=True
-        ordering=['name', '-weight']
+        ordering=['-weight', 'name']
     
 
 class PageLink(Link):
@@ -88,7 +88,75 @@ class ContactDetail(Model):
     #The weight (vertical position)
     weight = IntegerField(default=0)
     
+    #For schema.org microdata markup
+    itemprop = CharField(max_length=32, blank=True)
+    
     def __unicode__(self):
         return self.value
+    
+
+#Resume > Section > Subsection > Detail
+
+class Resume(Model):
+    #resume name, unique. Used for ID (HTML)
+    name = SlugField(max_length=32, unique=True)
+    
+    #What it's called
+    title = CharField(max_length=64)
+    
+    #Which order the resume is displayed.
+    #Resume with highest weight is shown on /resume page
+    weight = IntegerField(default=0)
+    
+    def __unicode__(self):
+        return self.title
+    
+class ResumeSection(Model):
+    #Unique name of the section (used for HTML)
+    name = SlugField(max_length=64, unique=True)
+    
+    #Title of the section
+    title = CharField(max_length=64)
+    
+    #Weight of the section (where it's displayed)
+    weight = IntegerField(default=0)
+    
+    #The resume the section is associated with
+    resume = ManyToManyField('Resume', related_name='sections')
+    
+    def __unicode__(self):
+        return ' - '.join([self.resume.title, self.title])
+        
+
+class ResumeSubSection(Model):
+    #Subsection name (used for HTML)
+    name = CharField(max_length=64)
+    
+    #Title of the subsection
+    title = CharField(max_length=128)
+    
+    #Weight of the section (where it's displayed)
+    weight = IntegerField(default=0)
+    
+    #Date of start (if any)
+    dateFrom = DateField()
+    
+    #Date of end (if any)
+    dateTo = DateField()
+    
+    #The section it's related to
+    section = ForeignKey('ResumeSection', related_name='subsections')
+    
+    
+class ResumeDetail(Model):
+    #Weight of the detail
+    weight = IntegerField(default=0)
+    
+    #Detail contents
+    contents = CharField(max_length=256)
+    
+    #Related subsection
+    subsection = ForeignKey('ResumeSubSection', related_name='details')
+
 
 
