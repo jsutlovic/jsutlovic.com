@@ -314,7 +314,7 @@ nav.page a:focus {
   color: #84C33F;
 }
 
-article#content {
+#content {
   position: relative;
   top: 0px;
   
