@@ -1,0 +1,12 @@
+article.resume ul {
+  margin: 0 0 0 16px;
+}
+
+article.resume ul li {
+  list-style-type: none;
+}
+
+article.resume ul.contact {
+  margin: 0;
+  line-height: 18px;
+}

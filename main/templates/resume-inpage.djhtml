@@ -1,0 +1,41 @@
+{% extends "page.djhtml" %}
+
+{% block header %}
+    {{ block.super }}
+    
+    <link href="{{ STATIC_URL }}styles/resume.css" rel="stylesheet" type="text/css" />
+    
+{% endblock header %}
+
+
+{% block page %}
+        <header>
+          <h2 class="title">{{ page.title }}</h2>
+{% include "links-page.djhtml" %}
+        </header>
+        
+        <article id="content" class="scrollable resume {{ resume.name }}">
+          {% block content %}
+          <header>
+            <h1>Jero Sutlovic</h1>
+            {{ resume.contactInfo|safe }}
+          </header>
+          
+          <ul class="resume">
+            {% for section in resume.sections.all %}
+            <li><h2>{{ section.title }}</h2></li>
+            <ul class="section {{ section.name }}">
+              {% for sub in section.subsections.all %}
+                <li><h3>{{ sub.title }}</h3></li>
+                <ul class="subsection {{ sub.name }}">
+                  {% for detail in sub.details.all %}
+                  <li class="detail">{{ detail.contents }}</li>
+                  {% endfor %}
+                </ul>
+              {% endfor %}
+            </ul>
+            {% endfor %}
+            {% endblock content %}
+          </ul>
+        </article>
+{% endblock page %}
