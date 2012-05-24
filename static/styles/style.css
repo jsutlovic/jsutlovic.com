@@ -137,7 +137,8 @@ h1.full-name span.given-name {
   width: 1em;
   font-size: 36px;
   word-wrap: break-word;
-  letter-spacing: .5em; /* Set large letter-spacing as precaution */
+  /* Set large letter-spacing as precaution */
+  letter-spacing: 0.5em;
   text-align: center;
   line-height: 75%;
   
@@ -200,7 +201,7 @@ nav.main.primary {
 }
 
 nav.main.primary ul {
-  list-style-type: 0;
+  list-style-type: none;
   margin: 0;
   padding: 0;
   height: 100%;
