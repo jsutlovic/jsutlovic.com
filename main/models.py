@@ -92,7 +92,7 @@ class ContactDetail(Model):
     itemprop = CharField(max_length=32, blank=True)
     
     def __unicode__(self):
-        return self.value
+        return " - ".join((str(self.weight), self.type, self.value))
     
 
 #Resume > Section > Subsection > Detail
@@ -107,6 +107,8 @@ class Resume(Model):
     #Which order the resume is displayed.
     #Resume with highest weight is shown on /resume page
     weight = IntegerField(default=0)
+    
+    contactInfo = TextField()
     
     def __unicode__(self):
         return self.title
@@ -125,7 +127,10 @@ class ResumeSection(Model):
     resume = ManyToManyField('Resume', related_name='sections')
     
     def __unicode__(self):
-        return ' - '.join([self.resume.title, self.title])
+        return self.title
+    
+    class Meta:
+        ordering = ['-weight']
         
 
 class ResumeSubSection(Model):
@@ -139,13 +144,20 @@ class ResumeSubSection(Model):
     weight = IntegerField(default=0)
     
     #Date of start (if any)
-    dateFrom = DateField()
+    dateFrom = DateField(null=True, blank=True)
     
     #Date of end (if any)
-    dateTo = DateField()
+    dateTo = DateField(null=True, blank=True)
     
     #The section it's related to
     section = ForeignKey('ResumeSection', related_name='subsections')
+    
+    def __unicode__(self):
+        return self.title
+    
+    #Default order is by descending weight
+    class Meta:
+        ordering = ['-weight']
     
     
 class ResumeDetail(Model):
@@ -157,6 +169,14 @@ class ResumeDetail(Model):
     
     #Related subsection
     subsection = ForeignKey('ResumeSubSection', related_name='details')
+    
+    #Show as subsection - contents
+    def __unicode__(self):
+        return " - ".join([self.subsection.name, self.contents])
+    
+    #Order by descending weight
+    class Meta:
+        ordering = ['-weight']
 
 
 
