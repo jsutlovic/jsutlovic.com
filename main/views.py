@@ -4,7 +4,7 @@ from django.shortcuts             import render_to_response, get_object_or_404, 
 from django.template              import Context, loader, RequestContext
 from django.http                  import HttpResponse, Http404
 
-from main.models import *
+from main.models import Page, SiteLink, ContactDetail, Resume
 
 
 def rr(template, context, request):
@@ -20,28 +20,37 @@ def rr(template, context, request):
     return render_to_response(template, context, context_instance=RequestContext(request))
 
 def about(request):
-    page = get_object_or_404( Page, name="about" )
+    rpage = get_object_or_404( Page, name="about" )
     
-    return rr("page.djhtml", {"page": page}, request)
+    return rr("page.djhtml", {"page": rpage}, request)
 
 
 def contact(request):
-    page = get_object_or_404( Page, name="contact" )
+    rpage = get_object_or_404( Page, name="contact" )
     
     details = ContactDetail.objects.all().order_by('-weight')
     
-    return rr("contact.djhtml", {"page": page, "details": details}, request)
+    return rr("contact.djhtml", {"page": rpage, "details": details}, request)
 
+
+def resume(request, name=""):
+    rpage = get_object_or_404( Page, name="resume" )
+    
+    if not name:
+        rres = Resume.objects.all().order_by('-weight')[0]
+    else:
+        rres = get_object_or_404( Page, name=name )
+    
+    return rr("resume-inpage.djhtml", {"page": rpage, "resume": rres}, request)
+    
 
 def page(request, name=""):
     if not name:
         return about(request)
     
-    #Switch some names:
+    #Redirect about page
     if name == "about":
         return redirect("jsutlovic-index")
-    elif name == "contact":
-        return contact(request)
     
     rpage = get_object_or_404( Page, name=name )
     
