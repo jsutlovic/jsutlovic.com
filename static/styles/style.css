@@ -271,14 +271,14 @@ div.main.container.scroll section#contentWrap {
   bottom: 48px;
 }
 
-section#contentWrap header {
+section#contentWrap>header {
   position: relative;
   height: 80px;
   
   z-index: 50;
 }
 
-section#contentWrap header h2.title {
+section#contentWrap>header>h2.title {
   font-variant: small-caps;
   float: left;
   margin-left: 120px;
@@ -289,7 +289,7 @@ section#contentWrap header h2.title {
   color: #464C52;
 }
 
-section#contentWrap header nav {
+section#contentWrap>header>nav {
   float: right;
   margin-right: 44px;
   margin-top: 30px;
