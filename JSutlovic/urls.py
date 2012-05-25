@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^about$', 'main.views.about', name='jsutlovic-about'),
     url(r'^contact$', 'main.views.contact', name='jsutlovic-contact'),
     url(r'^resume$', 'main.views.resume', name='jsutlovic-resume'),
+    url(r'^resume/plain$', 'main.views.resume', {"plain": True}, name='jsutlovic-resume-plain'),
+    url(r'resume/(?P<name>\S+)/plain$', 'main.views.resume', {"plain": True}, name='jsutlovic-resume-name-plain'),
     url(r'^resume/(?P<name>\S+)$', 'main.views.resume', name='jsutlovic-resume-name'),
     
     # Uncomment the admin/doc line below to enable admin documentation:
