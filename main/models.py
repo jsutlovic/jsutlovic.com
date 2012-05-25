@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Model, CharField, TextField, DateField, SlugField, URLField, ForeignKey, BooleanField, IntegerField, OneToOneField, ManyToManyField
+from django.db.models import *
 
 # Create your models here.
 
@@ -108,7 +108,13 @@ class Resume(Model):
     #Resume with highest weight is shown on /resume page
     weight = IntegerField(default=0)
     
-    contactInfo = TextField()
+    #HTML for resume's contact info section
+    contactInfo = TextField(blank=True)
+    
+    #HTML for resume's footer section
+    footer = TextField(blank=True)
+    
+    #sections = ManyToManyField - ResumeSection
     
     def __unicode__(self):
         return self.title
@@ -125,6 +131,8 @@ class ResumeSection(Model):
     
     #The resume the section is associated with
     resume = ManyToManyField('Resume', related_name='sections')
+    
+    #subsections = ForeignKey - ResumeSubSection
     
     def __unicode__(self):
         return self.title
@@ -143,6 +151,9 @@ class ResumeSubSection(Model):
     #Weight of the section (where it's displayed)
     weight = IntegerField(default=0)
     
+    #How do we display dates? (Options to pass to Django's built in date filter
+    dateDisplay = CharField(max_length=16, blank=True, choices=(('M Y', 'Month and Year'), ('Y', 'Year only')))
+    
     #Date of start (if any)
     dateFrom = DateField(null=True, blank=True)
     
@@ -151,6 +162,8 @@ class ResumeSubSection(Model):
     
     #The section it's related to
     section = ForeignKey('ResumeSection', related_name='subsections')
+    
+    #details = ForeignKey - ResumeDetail
     
     def __unicode__(self):
         return self.title
