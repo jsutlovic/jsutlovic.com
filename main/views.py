@@ -39,7 +39,7 @@ def resume(request, name=""):
     if not name:
         rres = Resume.objects.all().order_by('-weight')[0]
     else:
-        rres = get_object_or_404( Page, name=name )
+        rres = get_object_or_404( Resume, name=name )
     
     return rr("resume-inpage.djhtml", {"page": rpage, "resume": rres}, request)
     
