@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^about$', 'main.views.about', name='jsutlovic-about'),
     url(r'^contact$', 'main.views.contact', name='jsutlovic-contact'),
     url(r'^resume$', 'main.views.resume', name='jsutlovic-resume'),
-    url(r'^resume/(?P<name>\S+)', 'main.views.resume', name='jsutlovic-resume-name'),
+    url(r'^resume/(?P<name>\S+)$', 'main.views.resume', name='jsutlovic-resume-name'),
     
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
