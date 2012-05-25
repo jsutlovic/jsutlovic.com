@@ -33,13 +33,17 @@ def contact(request):
     return rr("contact.djhtml", {"page": rpage, "details": details}, request)
 
 
-def resume(request, name=""):
-    rpage = get_object_or_404( Page, name="resume" )
+def resume(request, name="", plain=False):
+    if not plain:
+        rpage = get_object_or_404( Page, name="resume" )
     
     if not name:
         rres = Resume.objects.all().order_by('-weight')[0]
     else:
         rres = get_object_or_404( Resume, name=name )
+    
+    if plain:
+        return rr("resume-plain.djhtml", {"resume": rres}, request)
     
     return rr("resume-inpage.djhtml", {"page": rpage, "resume": rres}, request)
     
