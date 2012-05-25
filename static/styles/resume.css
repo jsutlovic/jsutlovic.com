@@ -1,12 +1,97 @@
-article.resume ul {
-  margin: 0 0 0 16px;
+/*** Resume-specific styling ***/
+
+/* Resume gets extra padding */
+article#content.resume {
+	width: 592px;
+	padding: 10px 64px;
 }
 
-article.resume ul li {
-  list-style-type: none;
+div.container.scroll section article#content.resume {
+  width: 592px;
+  padding: 10px 64px;
 }
 
-article.resume ul.contact {
-  margin: 0;
-  line-height: 18px;
+/** Resume header **/
+article#content.resume header {
+	height: 96px;
+	border-bottom: 2px solid #464C52;
+	overflow: hidden;
+}
+
+article#content.resume header h1.name {
+	float: left;
+	color: #3772B8;
+	font-family: 'Quattrocento Sans', sans-serif;
+	font-size: 48px;
+	font-weight: normal;
+	padding: 12px 0;
+	margin: 0 64px;
+}
+
+article#content.resume header ul.contact {
+	float: right;
+	margin: 0 16px 0 0;
+	line-height: 18px;
+}
+
+/* General resume styling */
+article#content.resume ul {
+	margin: 0 0 0 16px;
+  /*padding: 0 0 0 16px;*/
+}
+
+article#content.resume ul.resume {
+  margin-top: 12px;
+}
+
+article#content.resume ul li {
+	list-style-type: none;
+}
+
+article#content.resume ul li h2 {
+  font-size: 18px;
+	color: #464C52;
+	text-decoration: underline;
+	padding: 8px 0px;
+}
+
+article#content.resume ul.section>li>h3 {
+  font-size: 14px;
+	display: inline;
+	color: #3772B8;
+}
+
+article#content.resume ul.section>li>span.date {
+  float: right;
+  line-height: 20px;
+}
+
+article#content.resume ul.subsection {
+  padding: 0 0 12px 0;
+}
+
+/** Education section gets special treatment **/
+article#content.resume ul.section.education>li {
+  clear: both;
+}
+
+article#content.resume ul.section.education>li>span.date {
+}
+
+article#content.resume ul.section.education li.detail {
+  float: left;
+  line-height: 20px;
+  margin-right: 8px;
+}
+
+article#content.resume ul.section.education li.detail.first:after {
+  content: ":";
+}
+
+/** Resume footer **/
+article#content.resume footer {
+  clear: both;
+}
+article#content.resume footer p {
+	text-align: center;
 }
