@@ -16,8 +16,8 @@
         
         <article id="content" class="scrollable resume {{ resume.name }}">
           {% block content %}
-          <header>
-            <h1>Jero Sutlovic</h1>
+          <header itemscope itemtype="http://schema.org/Person">
+            <h1 class="name" itemprop="name">Jero Sutlovic</h1>
             {{ resume.contactInfo|safe }}
           </header>
           
@@ -26,10 +26,16 @@
             <li><h2>{{ section.title }}</h2></li>
             <ul class="section {{ section.name }}">
               {% for sub in section.subsections.all %}
-                <li><h3>{{ sub.title }}</h3></li>
+                <li>
+                  <h3>{{ sub.title }}</h3>
+                  <span class="date">
+                    {% if sub.dateFrom %}<span class="dateFrom">{{ sub.dateFrom|date:sub.dateDisplay }}</span> &ndash; {% endif %}
+                    {% if sub.dateTo %}<span class="dateTo">{{ sub.dateTo|date:sub.dateDisplay }}</span>{% elif sub.dateFrom %}<span class="dateTo present">Present</span>{% endif %}
+                  </span>
+                </li>
                 <ul class="subsection {{ sub.name }}">
                   {% for detail in sub.details.all %}
-                  <li class="detail">{{ detail.contents }}</li>
+                  <li class="detail {% if forloop.first %}first{% endif %}">{{ detail.contents }}</li>
                   {% endfor %}
                 </ul>
               {% endfor %}
@@ -37,5 +43,9 @@
             {% endfor %}
             {% endblock content %}
           </ul>
+          
+          <footer>
+          	{{ resume.footer|safe }}
+          </footer>
         </article>
 {% endblock page %}
