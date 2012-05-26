@@ -228,6 +228,10 @@ class Project(Model):
     
     #tags = ManyToMany - ProjectTechTag
     #images = ForeignKey - ProjectImage
+    
+    def get_display_image(self):
+        #Display image is image with highest weight
+        return self.images.all().order_by('-weight')[0]
 
 
 class ProjectTechTag(Model):
