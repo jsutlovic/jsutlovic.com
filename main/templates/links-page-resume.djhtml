@@ -1,0 +1,6 @@
+          <nav class="page">
+            <ul>
+              <li><a href="{{ request.path }}/plain" title="Printer Friendly Version">Printer Friendly</a></li>
+              {% if resume.pdf %}<li><a href="{{ STATIC_URL }}files/pdf/{{ resume.name }}.pdf" title="Printable PDF version">PDF</a></li>{% endif %}
+            </ul>
+          </nav>
