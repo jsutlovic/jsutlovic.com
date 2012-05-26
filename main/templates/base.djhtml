@@ -39,7 +39,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/scroller.js"></script>
     
     <!-- Menu highlight (temporary) -->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/menu.js"></script>
+    <!-- <script type="text/javascript" src="{{ STATIC_URL }}js/menu.js"></script> -->
     
     {% endblock header %}
     
