@@ -11,7 +11,7 @@
 {% block page %}
         <header>
           <h2 class="title">{{ page.title }}</h2>
-{% include "links-page.djhtml" %}
+{% include "links-page-resume.djhtml" %}
         </header>
         
         <article id="content" class="scrollable resume {{ resume.name }}">
@@ -24,25 +24,29 @@
           <ul class="resume">
             {% for section in resume.sections.all %}
             <li><h2>{{ section.title }}</h2></li>
-            <ul class="section {{ section.name }}">
-              {% for sub in section.subsections.all %}
-                <li>
-                  <h3>{{ sub.title }}</h3>
-                  <span class="date">
-                    {% if sub.dateFrom %}<span class="dateFrom">{{ sub.dateFrom|date:sub.dateDisplay }}</span> &ndash; {% endif %}
-                    {% if sub.dateTo %}<span class="dateTo">{{ sub.dateTo|date:sub.dateDisplay }}</span>{% elif sub.dateFrom %}<span class="dateTo present">Present</span>{% endif %}
-                  </span>
-                </li>
-                <ul class="subsection {{ sub.name }}">
-                  {% for detail in sub.details.all %}
-                  <li class="detail {% if forloop.first %}first{% endif %}">{{ detail.contents }}</li>
-                  {% endfor %}
-                </ul>
-              {% endfor %}
-            </ul>
+            <li>
+              <ul class="section {{ section.name }}">
+                {% for sub in section.subsections.all %}
+                  <li>
+                    <h3>{{ sub.title }}</h3>
+                    <span class="date">
+                      {% if sub.dateFrom %}<span class="dateFrom">{{ sub.dateFrom|date:sub.dateDisplay }}</span> &ndash; {% endif %}
+                      {% if sub.dateTo %}<span class="dateTo">{{ sub.dateTo|date:sub.dateDisplay }}</span>{% elif sub.dateFrom %}<span class="dateTo present">Present</span>{% endif %}
+                    </span>
+                  </li>
+                  <li>
+                    <ul class="subsection {{ sub.name }}">
+                      {% for detail in sub.details.all %}
+                      <li class="detail {% if forloop.first %}first{% endif %}">{{ detail.contents }}</li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
             {% endfor %}
-            {% endblock content %}
           </ul>
+          {% endblock content %}
           
           <footer>
           	{{ resume.footer|safe }}
