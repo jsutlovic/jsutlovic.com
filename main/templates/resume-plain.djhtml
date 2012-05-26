@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Jero Sutlovic - Resume</title>
+    <meta name="description" content="Jero Sutlovic: My resume, printer friendly" />
+    <meta name="keywords" content="Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery" />
+    <meta name="author" content="Jero Sutlovic" />
+
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+    <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+    <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.png" type="image/png" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}favicon16.ico" type="image/x-icon" />
+    
+    <!-- == Styles == -->
+    
+    <!-- Google Fonts -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700|PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
+    
+    <link href="{{ STATIC_URL }}styles/resume.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ STATIC_URL }}styles/resume_print.css" rel="stylesheet" type="text/css" media="print" />
+    
+    <!-- == Scripts == -->
+    
+    <!-- <script type="text/javascript" src="{{ STATIC_URL }}js/html5shiv.js"></script> -->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/html5shiv-printshiv.js"></script>
+    
+  </head>
+
+  <body id="resume-plain">
+    <article id="content" class="resume plain {{ resume.name }}">
+      {% block content %}
+      <header itemscope itemtype="http://schema.org/Person">
+        <h1 class="name" itemprop="name">Jero Sutlovic</h1>
+        {{ resume.contactInfo|safe }}
+      </header>
+      
+      <ul class="resume">
+        {% for section in resume.sections.all %}
+        <li><h2>{{ section.title }}</h2></li>
+        <li>
+          <ul class="section {{ section.name }}">
+            {% for sub in section.subsections.all %}
+              <li>
+                <h3>{{ sub.title }}</h3>
+                <span class="date">
+                  {% if sub.dateFrom %}<span class="dateFrom">{{ sub.dateFrom|date:sub.dateDisplay }}</span> &ndash; {% endif %}
+                  {% if sub.dateTo %}<span class="dateTo">{{ sub.dateTo|date:sub.dateDisplay }}</span>{% elif sub.dateFrom %}<span class="dateTo present">Present</span>{% endif %}
+                </span>
+              </li>
+              <li>
+                <ul class="subsection {{ sub.name }}">
+                  {% for detail in sub.details.all %}
+                  <li class="detail {% if forloop.first %}first{% endif %}">{{ detail.contents }}</li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endblock content %}
+      
+      <footer>
+        {{ resume.footer|safe }}
+      </footer>
+    </article>
+  </body>
+</html>
