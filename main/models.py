@@ -114,10 +114,16 @@ class Resume(Model):
     #HTML for resume's footer section
     footer = TextField(blank=True)
     
+    pdf = BooleanField(default=False)
+    
     #sections = ManyToManyField - ResumeSection
     
     def __unicode__(self):
         return self.title
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('jsutlovic-resume-name', [str(self.name)])
     
 class ResumeSection(Model):
     #Unique name of the section (used for HTML)
