@@ -1,5 +1,11 @@
 /*** Resume-specific styling ***/
 
+/** Defaults for plain **/
+body, ul, li, p, h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
 /* Resume gets extra padding */
 article#content.resume {
 	width: 592px;
@@ -9,6 +15,20 @@ article#content.resume {
 div.container.scroll section article#content.resume {
   width: 592px;
   padding: 10px 64px;
+}
+
+/** Plain styling **/
+article#content.resume.plain {
+  width: 592px;
+  padding: 8px 0px;
+  margin: 0 auto;
+  font-family: 'PT Sans Caption', sans-serif;
+  font-size: 12px;
+}
+
+article#content.resume.plain a {
+  color: #3772B8;
+  text-decoration: none;
 }
 
 /** Resume header **/
@@ -50,7 +70,7 @@ article#content.resume ul li {
 
 article#content.resume ul li h2 {
   font-size: 18px;
-	color: #464C52;
+	color: #19191F;
 	text-decoration: underline;
 	padding: 8px 0px;
 }
@@ -64,6 +84,8 @@ article#content.resume ul.section>li>h3 {
 article#content.resume ul.section>li>span.date {
   float: right;
   line-height: 20px;
+  height: 14px;
+  margin-right: 32px;
 }
 
 article#content.resume ul.subsection {
@@ -73,9 +95,6 @@ article#content.resume ul.subsection {
 /** Education section gets special treatment **/
 article#content.resume ul.section.education>li {
   clear: both;
-}
-
-article#content.resume ul.section.education>li>span.date {
 }
 
 article#content.resume ul.section.education li.detail {
