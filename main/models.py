@@ -235,7 +235,7 @@ class ProjectTechTag(Model):
     name = SlugField(max_length=32, unique=True)
     
     #Related project
-    project = ManyToManyField('Project', related_name='tags')
+    projects = ManyToManyField('Project', related_name='tags')
     
 class ProjectImage(Model):
     #A short image description
