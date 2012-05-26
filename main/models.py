@@ -1,7 +1,13 @@
 from django.db import models
 from django.db.models import *
 
-# Create your models here.
+#Find image path utility
+def get_image_path(instance, filename):
+    if isinstance(instance, ProjectImage):
+        return "images/%(project)s/%(filename)s" % {'project': instance.project.name, 'filename': filename}
+    elif isinstance(instance, ProjectImageThumb):
+        return "images/%(project)s/thumbs/%(filename)s" % {'project': instance.large.project.name, 
+                                                           'filename': instance.large.image.name}
 
 class Page(Model):
     #The page name/slug
@@ -158,7 +164,7 @@ class ResumeSubSection(Model):
     weight = IntegerField(default=0)
     
     #How do we display dates? (Options to pass to Django's built in date filter
-    dateDisplay = CharField(max_length=16, blank=True, choices=(('M Y', 'Month and Year'), ('Y', 'Year only')))
+    dateDisplay = CharField(max_length=16, blank=True, choices=(('M Y', "Month and Year"), ('Y', "Year only")))
     
     #Date of start (if any)
     dateFrom = DateField(null=True, blank=True)
@@ -196,6 +202,70 @@ class ResumeDetail(Model):
     #Order by descending weight
     class Meta:
         ordering = ['-weight']
+
+
+class Project(Model):
+    #Project shortname
+    name = SlugField(max_length=32, unique=True)
+    
+    #Title (displayed name) of project
+    title = CharField(max_length=64)
+    
+    #Description of the project
+    description = TextField()
+    
+    #URL of the project, if any
+    url = URLField(blank=True)
+    
+    #Date of start (if any)
+    dateFrom = DateField(null=True, blank=True)
+    
+    #Date of end (else consider current)
+    dateTo = DateField(null=True, blank=True)
+    
+    #The weight of the project
+    weight = IntegerField(default=0)
+    
+    #tags = ManyToMany - ProjectTechTag
+    #images = ForeignKey - ProjectImage
+
+
+class ProjectTechTag(Model):
+    #Name of the tag
+    name = SlugField(max_length=32, unique=True)
+    
+    #Related project
+    project = ManyToManyField('Project', related_name='tags')
+    
+class ProjectImage(Model):
+    #A short image description
+    title = CharField(max_length=128)
+    
+    #Related project
+    project = ForeignKey('Project', related_name='images')
+    
+    #The image file
+    image = ImageField(upload_to=get_image_path)
+    
+    #For display ordering
+    weight = IntegerField(default=0)
+    
+    #thumb = ProjectImageThumb
+    
+    class Meta:
+        ordering = ['-weight']
+    
+    
+class ProjectImageThumb(Model):
+    #Related image this thumbnail is for
+    large = OneToOneField('ProjectImage', related_name='thumb')
+    
+    #The image file
+    image = ImageField(upload_to=get_image_path)
+    
+
+
+
 
 
 
