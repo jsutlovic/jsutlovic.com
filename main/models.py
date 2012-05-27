@@ -8,9 +8,8 @@ DATE_CHOICES = (('M Y', "Month and Year"), ('Y', "Year only"))
 def get_image_path(instance, filename):
     if isinstance(instance, ProjectImage):
         return "images/%(project)s/%(filename)s" % {'project': instance.project.name, 'filename': filename}
-    elif isinstance(instance, ProjectImageThumb):
-        return "images/%(project)s/thumbs/%(filename)s" % {'project': instance.large.project.name, 
-                                                           'filename': instance.large.image.name}
+    elif isinstance(instance, ProjectIcon):
+        return "images/%(project)s/icon.png" % {'project': instance.project.name}
 
 class Page(Model):
     #The page name/slug
@@ -234,10 +233,13 @@ class Project(Model):
     
     #tags = ManyToMany - ProjectTechTag
     #images = ForeignKey - ProjectImage
+    #icon = ProjectIcon
     
-    def get_display_image(self):
-        #Display image is image with highest weight
-        return self.images.all().order_by('-weight')[0]
+    def __unicode__(self):
+        return self.title 
+    
+    def get_tags(self):
+        return self.tags.all().order_by('name')
 
 
 class ProjectTechTag(Model):
@@ -246,6 +248,9 @@ class ProjectTechTag(Model):
     
     #Related project
     projects = ManyToManyField('Project', related_name='tags')
+    
+    def __unicode__(self):
+        return self.name
     
 class ProjectImage(Model):
     #A short image description
@@ -260,19 +265,22 @@ class ProjectImage(Model):
     #For display ordering
     weight = IntegerField(default=0)
     
-    #thumb = ProjectImageThumb
-    
     class Meta:
         ordering = ['-weight']
+        
+    def __unicode__(self):
+        return self.title
     
     
-class ProjectImageThumb(Model):
-    #Related image this thumbnail is for
-    large = OneToOneField('ProjectImage', related_name='thumb')
+class ProjectIcon(Model):
+    #Related project this thumbnail is for
+    project = OneToOneField('Project', related_name='icon')
     
     #The image file
     image = ImageField(upload_to=get_image_path)
     
+    def __unicode__(self):
+        return "%s %s" % (self.project.name, "icon")
 
 
 
