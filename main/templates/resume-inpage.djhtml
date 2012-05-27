@@ -29,10 +29,10 @@
                 {% for sub in section.subsections.all %}
                   <li>
                     <h3>{{ sub.title }}</h3>
-                    <span class="date">
+                    {% if sub.dateDisplay %}<span class="date">
                       {% if sub.dateFrom %}<span class="dateFrom">{{ sub.dateFrom|date:sub.dateDisplay }}</span> &ndash; {% endif %}
                       {% if sub.dateTo %}<span class="dateTo">{{ sub.dateTo|date:sub.dateDisplay }}</span>{% elif sub.dateFrom %}<span class="dateTo present">Present</span>{% endif %}
-                    </span>
+                    </span>{% endif %}
                   </li>
                   <li>
                     <ul class="subsection {{ sub.name }}">
