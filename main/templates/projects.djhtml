@@ -1,0 +1,29 @@
+{% extends "page.djhtml" %}
+
+{% block header %}
+    {{ block.super }}
+    
+    <link href="{{ STATIC_URL }}styles/projects.css" rel="stylesheet" type="text/css" />
+    
+{% endblock header %}
+
+
+{% block content %}
+{{ block.super }}
+          <div class="projects">
+            {% for project in projects %}
+            <article class="project">
+              <img src="{{ project.get_display_image.image.url }}" title="{{ project.get_display_image.title }}" rel="" />
+              <h3>{{ project.title }}</h3>
+              <span class="date"></span>
+              <ul class="techtags">
+                <li><h4>Tech used:</h4></li>
+                {% for tag in project.tags %}
+                <li>{{ tag.name }}</li>
+                {% endfor %}
+              </ul>
+              <p class="description">{{ project.description }}</p>
+            </article>
+            {% endfor %}
+          </div>
+{% endblock %}
