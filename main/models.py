@@ -1,6 +1,9 @@
 from django.db import models
 from django.db.models import *
 
+#Options for date formatting
+DATE_CHOICES = (('M Y', "Month and Year"), ('Y', "Year only"))
+
 #Find image path utility
 def get_image_path(instance, filename):
     if isinstance(instance, ProjectImage):
@@ -164,7 +167,7 @@ class ResumeSubSection(Model):
     weight = IntegerField(default=0)
     
     #How do we display dates? (Options to pass to Django's built in date filter
-    dateDisplay = CharField(max_length=16, blank=True, choices=(('M Y', "Month and Year"), ('Y', "Year only")))
+    dateDisplay = CharField(max_length=16, blank=True, choices=DATE_CHOICES)
     
     #Date of start (if any)
     dateFrom = DateField(null=True, blank=True)
@@ -216,6 +219,9 @@ class Project(Model):
     
     #URL of the project, if any
     url = URLField(blank=True)
+    
+    #How the dates should be displayed (if at all)
+    dateDisplay = CharField(max_length=16, blank=True, choices=DATE_CHOICES)
     
     #Date of start (if any)
     dateFrom = DateField(null=True, blank=True)
