@@ -1,0 +1,40 @@
+
+
+article.project {
+  padding: 8px 0px;
+}
+
+article#content article.project>h3 {
+  display: inline;
+  color: #3772B8;
+}
+
+article.project>span.date {
+  margin-left: 8px;
+}
+
+article.project>ul.techtags {
+  list-style-type: none;
+}
+
+article.project>ul.techtags>li {
+  float: left;
+  margin-right: 8px;
+}
+
+article.project>ul.techtags>li>h4 {
+  color: #464C52;
+}
+
+article#content article.project>p.description {
+  float: left;
+  width: 522px;
+  margin: 0;
+}
+
+article#content article.project>img.icon {
+  width: 120px;
+  height: 90px;
+  margin: 0 10px 0 0;
+  padding: 0;
+}

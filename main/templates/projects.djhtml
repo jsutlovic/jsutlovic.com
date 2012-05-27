@@ -8,22 +8,35 @@
 {% endblock header %}
 
 
+{% block page %}
+        <header>
+          <h2 class="title">{{ page.title }}</h2>
+{% include "links-page.djhtml" %}
+        </header>
+
 {% block content %}
-{{ block.super }}
+        <article id="content" class="scrollable">
           <div class="projects">
             {% for project in projects %}
             <article class="project">
-              <img src="{{ project.get_display_image.image.url }}" title="{{ project.get_display_image.title }}" rel="" />
+              <img src="{{ project.icon.image.url }}" class="left icon" alt="OCDS icon" title="View Screenshots" />
               <h3>{{ project.title }}</h3>
-              <span class="date"></span>
+              {% if project.dateDisplay %}
+              <span class="date">
+                {% if project.dateFrom %}<span class="dateFrom">{{ project.dateFrom|date:project.dateDisplay }}</span> &ndash; {% endif %}
+                {% if project.dateTo %}<span class="dateTo">{{ project.dateTo|date:project.dateDisplay }}</span>{% elif project.dateFrom %}<span class="dateTo present">Present</span>{% endif %}
+              </span>
+              {% endif %}
               <ul class="techtags">
-                <li><h4>Tech used:</h4></li>
-                {% for tag in project.tags %}
-                <li>{{ tag.name }}</li>
+                <li><h4>Technologies:</h4></li>
+                {% for tag in project.get_tags %}
+                <li><a href="{% url jsutlovic-projects-techtag techtag=tag.name %}">{{ tag.name }}</a></li>
                 {% endfor %}
               </ul>
-              <p class="description">{{ project.description }}</p>
+              <p class="description">{{ project.description|safe|truncatewords_html:40 }}</p>
             </article>
             {% endfor %}
           </div>
 {% endblock %}
+        </article>
+{% endblock page %}
