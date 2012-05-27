@@ -48,10 +48,19 @@ def resume(request, name="", plain=False):
     return rr("resume-inpage.djhtml", {"page": rpage, "resume": rres}, request)
 
 def projects(request, name="", techtag=""):
-    if not ( name or techtag ):
+    if not ( name and techtag ):
         rpage = get_object_or_404( Page, name='work' )
         rprojects = Project.objects.all().order_by('-weight')
         return rr("projects.djhtml", {"page": rpage, "projects": rprojects}, request)
+    elif techtag:
+        rpage = get_object_or_404( Page, name='work' )
+        ptt = get_object_or_404( ProjectTechTag, name=techtag )
+        rprojects = ptt.projects.all().order_by('-weight')
+        return rr("projects.djhtml", {"page": rpage, "projects": rprojects}, request)
+    elif name:
+        rpage = get_object_or_404( Page, name='work' )
+        rproject = get_object_or_404( Project, name=name )
+        return rr("project.djhtml", {"page": rpage, "project": rproject}, request)
     
 
 def page(request, name=""):
