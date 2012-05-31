@@ -75,7 +75,7 @@ div.main.container {
     width: 720px;
     min-height: 600px;
     
-    background-color: #d7effb;
+   background-color: #FFFFFF;
 }
 
 div.main.container.scroll {
@@ -250,6 +250,12 @@ nav.secondary a:focus {
 
 /*** Content ***/
 
+div.main.container.scroll section#contentWrap {
+  position: absolute;
+  top: 78px;
+  bottom: 48px;
+}
+
 section#contentWrap {
   position: relative;
   
@@ -264,12 +270,6 @@ section#contentWrap {
   border-bottom: 2px solid #84C33F;
 
   z-index: 40;
-}
-
-div.main.container.scroll section#contentWrap {
-  position: absolute;
-  top: 78px;
-  bottom: 48px;
 }
 
 section#contentWrap>header {
