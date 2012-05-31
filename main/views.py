@@ -25,7 +25,6 @@ def rr(template, context, request):
 
 def about(request):
     rpage = get_object_or_404( Page, name="about" )
-    
     return rr("page.djhtml", {"page": rpage}, request)
 
 
@@ -52,17 +51,15 @@ def resume(request, name="", plain=False):
     return rr("resume-inpage.djhtml", {"page": rpage, "resume": rres}, request)
 
 def projects(request, name="", techtag=""):
+    rpage = get_object_or_404( Page, name='work' )
     if not ( name or techtag ):
-        rpage = get_object_or_404( Page, name='work' )
         rprojects = Project.objects.all().order_by('-weight')
         return rr("projects.djhtml", {"page": rpage, "projects": rprojects}, request)
     elif techtag:
-        rpage = get_object_or_404( Page, name='work' )
         ptt = get_object_or_404( ProjectTechTag, name=techtag )
         rprojects = ptt.projects.all().order_by('-weight')
         return rr("projects.djhtml", {"page": rpage, "projects": rprojects}, request)
     elif name:
-        rpage = get_object_or_404( Page, name='work' )
         rproject = get_object_or_404( Project, name=name )
         return rr("project.djhtml", {"page": rpage, "project": rproject}, request)
     
@@ -78,4 +75,24 @@ def page(request, name=""):
     rpage = get_object_or_404( Page, name=name )
     
     return rr("page.djhtml", {"page": rpage}, request)
+
+def handler404(request):
+    epage = {'name': "404",
+            'title': "Page Not Found",
+            'description': "Page not found",
+            'header_content': "",
+            'content': "<p>Looks like the page you're looking for isn't here.</p>",
+            'scrollable': True}
+    
+    return rr("page.djhtml", {"page": epage}, request)
+
+def handler500(request):
+    epage = {'name': "500",
+            'title': "Server Error",
+            'description': "Server Error",
+            'header_content': "",
+            'content': "<p>Uhoh, looks like the server made a boo-boo.</p>",
+            'scrollable': True}
+    
+    return rr("page.djhtml", {"page": epage}, request)
 
