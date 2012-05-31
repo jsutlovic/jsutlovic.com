@@ -3,6 +3,8 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from django.views.generic import RedirectView
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -22,17 +24,23 @@ urlpatterns = patterns('main.views',
     url(r'^work$', 'projects', name='jsutlovic-projects'),
     url(r'^work/tech/(?P<techtag>\S+)$', 'projects', {"name":None}, name='jsutlovic-projects-techtag'),
     url(r'^work/(?P<name>\S+)$', 'projects', name='jsutlovic-projects-name'),
+    url(r'^bcard$', RedirectView.as_view(url='/contact', permanent=False))
     
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     
 )
 
-#Static files (development)
-urlpatterns += staticfiles_urlpatterns()
+if settings.DEVELOPMENT:
+    urlpatterns += patterns(
+        '',
+        #Static files (development)
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATICFILES_DIRS[0]}),
+        #Media serving (development)
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )
 
-#Media serving (development)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 #Extras
 urlpatterns += patterns('',
@@ -42,3 +50,6 @@ urlpatterns += patterns('',
                         #Page catch-all
                         url(r'^(?P<name>\S+)$', 'main.views.page', name='jsutlovic-page'),
 )
+
+handler404 = "main.views.handler404"
+handler500 = "main.views.handler500"
