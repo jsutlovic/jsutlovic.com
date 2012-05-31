@@ -16,8 +16,8 @@
 {% include "links-page.djhtml" %}
         </header>
 
-{% block content %}
         <article id="content" class="scrollable">
+{% block content %}
           {{ page.content|safe }}
           <ul class="projects">
             {% for project in projects %}
