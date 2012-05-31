@@ -4,8 +4,12 @@ from django.shortcuts             import render_to_response, get_object_or_404, 
 from django.template              import Context, loader, RequestContext
 from django.http                  import HttpResponse, Http404
 
+import logging
+
 from main.models import Page, SiteLink, ContactDetail, Resume, Project, ProjectTechTag
 
+
+logger = logging.getLogger(__name__)
 
 def rr(template, context, request):
     links = {"primary": SiteLink.objects.filter(primaryLinks=True, disabled=False).order_by('-weight'),
@@ -48,7 +52,7 @@ def resume(request, name="", plain=False):
     return rr("resume-inpage.djhtml", {"page": rpage, "resume": rres}, request)
 
 def projects(request, name="", techtag=""):
-    if not ( name and techtag ):
+    if not ( name or techtag ):
         rpage = get_object_or_404( Page, name='work' )
         rprojects = Project.objects.all().order_by('-weight')
         return rr("projects.djhtml", {"page": rpage, "projects": rprojects}, request)
