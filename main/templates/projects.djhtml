@@ -5,6 +5,8 @@
     
     <link href="{{ STATIC_URL }}styles/projects.css" rel="stylesheet" type="text/css" />
     
+    <script src="{{ STATIC_URL }}js/projects.js" type="text/javascript"></script>
+    
 {% endblock header %}
 
 
@@ -16,11 +18,19 @@
 
 {% block content %}
         <article id="content" class="scrollable">
-          <div class="projects">
+          {{ page.content|safe }}
+          <ul class="projects">
             {% for project in projects %}
-            <article class="project">
-              <img src="{{ project.icon.image.url }}" class="left icon" alt="OCDS icon" title="View Screenshots" />
-              <h3>{{ project.title }}</h3>
+            <li><article class="project">
+              <div class="icons">
+	          	{% for image in project.get_images %}
+	          	  {% if forloop.first %}<a href="{{ image.image.url }}" class="fancybox" rel="gallery[{{ project.name }}]" title="{{ image.title }}"><img src="{{ project.icon.image.url }}" class="icon green" alt="{{ project.title }} icon" title="View Screenshots" /></a>{% else %}
+	          	  <a href="{{ image.image.url }}" class="hidden fancybox" rel="gallery[{{ project.name }}]" title="{{ image.title }}"></a>{% endif %}
+	          	{% empty %}
+	          	  <img src="{{ project.icon.image.url }}" class="icon" alt="{{ project.title }} icon" />
+	          	{% endfor %}
+              </div>
+              <h3>{% if project.url %}<a href="{{ project.url }}" target="_blank" title="View project" >{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</h3>
               {% if project.dateDisplay %}
               <span class="date">
                 {% if project.dateFrom %}<span class="dateFrom">{{ project.dateFrom|date:project.dateDisplay }}</span> &ndash; {% endif %}
@@ -33,10 +43,10 @@
                 <li><a href="{% url jsutlovic-projects-techtag techtag=tag.name %}">{{ tag.name }}</a></li>
                 {% endfor %}
               </ul>
-              <p class="description">{{ project.description|safe|truncatewords_html:40 }}</p>
-            </article>
+              <p class="description">{{ project.description|safe }}</p>
+            </article></li>
             {% endfor %}
-          </div>
+          </ul>
 {% endblock %}
         </article>
 {% endblock page %}

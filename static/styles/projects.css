@@ -1,7 +1,25 @@
 
+ul.projects {
+  margin-top: 8px;
+  list-style-type: none;
+
+  border-bottom: 1px solid #3772B8;
+  border-top: 1px solid #84C33F;
+}
+
+ul.projects li {
+  margin: 0;
+  padding: 0;
+}
 
 article.project {
   padding: 8px 0px;
+  clear: both;
+  min-height: 98px;
+  overflow: hidden;
+  
+  border-top: 1px solid #3772B8;
+  border-bottom: 1px solid #84C33F;
 }
 
 article#content article.project>h3 {
@@ -15,6 +33,7 @@ article.project>span.date {
 
 article.project>ul.techtags {
   list-style-type: none;
+  margin-top: 2px;
 }
 
 article.project>ul.techtags>li {
@@ -26,15 +45,41 @@ article.project>ul.techtags>li>h4 {
   color: #464C52;
 }
 
-article#content article.project>p.description {
+article#content article.project p.description {
   float: left;
   width: 522px;
-  margin: 0;
+  margin: 2px 0 0 0;
+}
+article#content article.project p.description:after {
+  content: "...";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 
-article#content article.project>img.icon {
+article#content article.project div.icons {
+  width: 128px;
+  height: 98px;
+  overflow: hidden;
+  float: left;
+  margin: 0px 6px 0px 0px;
+}
+
+article#content article.project div.icons img.icon {
   width: 120px;
   height: 90px;
-  margin: 0 10px 0 0;
-  padding: 0;
+  margin: 0;
+  padding: 4px;
 }
+
+article#content article.project div.icons a:hover img.icon.blue,
+article#content article.project div.icons a:focus img.icon.blue {
+  background-color: #3772B8;
+}
+
+article#content article.project div.icons a:hover img.icon.green,
+article#content article.project div.icons a:focus img.icon.green {
+  background-color: #84C33F;
+}
+
