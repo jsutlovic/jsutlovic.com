@@ -41,6 +41,16 @@ $(function(){
   });
 
 
+ /*
+  * Set all fancybox image links as a single gallery if
+  * they don't have one already
+  */
+  $(".fancybox").each(function(index, elem){
+    if (! $(elem).attr('rel')){
+      $(elem).attr('rel', 'gallery')
+    }
+  });
+  
   /*
    * Fancybox init:
    * Use buttons, at the bottom with the title outside the image
@@ -53,7 +63,7 @@ $(function(){
     closeBtn    : false,
     mouseWheel  : false,
     helpers   : {
-      title : { type : 'outside' },
+      title : { type : 'float' },
       buttons : {
         position: 'bottom',
         tpl: '<div id="fancybox-buttons"><ul><li><a class="btnPrev" title="Previous" href="javascript:;"></a></li><li><a class="btnNext" title="Next" href="javascript:;"></a></li><li><a class="btnToggle" title="Toggle size" href="javascript:;"></a></li><li><a class="btnClose" title="Close" href="javascript:jQuery.fancybox.close();"></a></li></ul></div>'},
