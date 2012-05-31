@@ -240,6 +240,9 @@ class Project(Model):
     
     def get_tags(self):
         return self.tags.all().order_by('name')
+    
+    def get_images(self):
+        return self.images.all().order_by('-weight')
 
 
 class ProjectTechTag(Model):
