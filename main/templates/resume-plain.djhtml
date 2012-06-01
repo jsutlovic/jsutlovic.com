@@ -8,26 +8,36 @@
     <meta name="keywords" content="Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery" />
     <meta name="author" content="Jero Sutlovic" />
 
-    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
-
-    <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+    <!-- Favicons -->
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.png" type="image/png" />
-    <link rel="shortcut icon" href="{{ STATIC_URL }}favicon16.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.ico" type="image/x-icon" />
     
     <!-- == Styles == -->
     
     <!-- Google Fonts -->
-    <!-- <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700|PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'> -->
     <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
     
+    <!-- Resume-specific -->
     <link href="{{ STATIC_URL }}styles/resume.css" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ STATIC_URL }}styles/resume_print.css" rel="stylesheet" type="text/css" media="print" />
     
     <!-- == Scripts == -->
     
-    <!-- <script type="text/javascript" src="{{ STATIC_URL }}js/html5shiv.js"></script> -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/html5shiv-printshiv.js"></script>
+    
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-31916872-1']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
     
   </head>
 
