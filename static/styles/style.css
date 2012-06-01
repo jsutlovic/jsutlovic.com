@@ -1,19 +1,11 @@
 * { margin: 0; padding: 0; }
 html, body { height: 100%; }
 
-html {  }
 body { background: #d7effb url("/static/images/bg.jpg") repeat-x top center; }
 
 a { text-decoration: none; outline: 0; }
 
 br.clear { display: block; height: 0px; clear: both; }
-
-/* blue: #3772B8 */
-/* green: #84C33F */
-/* bluebg: #EAF7FD 75% */
-/* gray: #464C52 */
-/* dark gray: #19191F */
-
 
 /** Topbar **/
 div#topbar {
@@ -32,8 +24,6 @@ div#topbar {
   font-family: "PT Sans Caption", sans-serif;
   font-size: 14px;
   line-height: 18px;
-
-  /*visibility: hidden;*/
 }
 
 div#topbar a { color: #84C33F; }
@@ -206,7 +196,6 @@ nav.main.primary ul {
 nav.main.primary ul li {
   display: block;
   float: left;
-  /*margin-left: 24px;*/
   height: 100%;
   padding-top: 40px;
 }
@@ -323,7 +312,6 @@ nav.page a:focus {
   color: #19191F;
   font-size: 12px;
   outline: 0;
-  /*text-align: justify;*/
 }
 
 div.container.scroll section article#content {
