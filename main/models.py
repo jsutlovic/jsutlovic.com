@@ -99,6 +99,9 @@ class ContactDetail(Model):
     #For schema.org microdata markup
     itemprop = CharField(max_length=32, blank=True)
     
+    class Meta:
+        ordering = ["-weight"]
+    
     def __unicode__(self):
         return " - ".join((str(self.weight), self.type, self.value))
     
@@ -125,6 +128,9 @@ class Resume(Model):
     pdf = BooleanField(default=False)
     
     #sections = ManyToManyField - ResumeSection
+    
+    class Meta:
+        ordering = ['-weight']
     
     def __unicode__(self):
         return self.title
