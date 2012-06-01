@@ -2,7 +2,7 @@
 html, body { height: 100%; }
 
 html {  }
-body { background: #d7effb url("/static/images/BGWrinkleFade3.jpg") repeat-x top center; }
+body { background: #d7effb url("/static/images/bg.jpg") repeat-x top center; }
 
 a { text-decoration: none; outline: 0; }
 
@@ -123,12 +123,12 @@ h1.full-name span.gnbg {
   
   width: 18px;
   height: 129px;
-  background: url("/static/images/Jero2.png") repeat-x 0 0;
+  background: url("/static/images/Jero.png") repeat-x 0 0;
   overflow:hidden;
 }
 a#name:hover>h1>span.gnbg,
 a#name:focus>h1>span.gnbg {
-  background: url("/static/images/Jero2.png") repeat-x 18px 0;
+  background-position: 18px 0;
 }
 
 /* First name is displayed vertically */
@@ -160,15 +160,11 @@ h1.full-name span.fnbg {
   
   width: 176px;
   height: 34px;
-  background: url("/static/images/Sutlovic2.png");
-  background-repeat: repeat-y;
-  background-position: 0 0px;
+  background: url("/static/images/Sutlovic.png") repeat-y 0 0;
   overflow: hidden;
 }
 a#name:hover>h1>span.fnbg,
 a#name:focus>h1>span.fnbg {
-  background: url("/static/images/Sutlovic2.png");
-  background-repeat: repeat-y;
   background-position: 0 34px;
 }
 
