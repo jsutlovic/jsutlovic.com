@@ -79,7 +79,3 @@ class ProjectAdmin(ModelAdmin):
     inlines = (ProjectIconInline, ProjectTechTagInline, ProjectImageInline)
 
 admin.site.register(Project, ProjectAdmin)
-
-#admin.site.register(ProjectTechTag)
-#admin.site.register(ProjectImage)
-#admin.site.register(ProjectIcon)
