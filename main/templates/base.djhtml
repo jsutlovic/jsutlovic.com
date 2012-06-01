@@ -23,6 +23,7 @@
     <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.css" rel="stylesheet" type="text/css" />
     <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.lozenge.css" rel="stylesheet" type="text/css" />
     
+    <!-- Main style -->
     <link href="{{ STATIC_URL }}styles/style.css" rel="stylesheet" type="text/css" />
     
     <!-- == Scripts == -->
@@ -60,19 +61,22 @@
 
   <body id="{{ page.name }}">
     <div class="main container {% if page.scrollable %}scroll{% endif %}">
+      <!-- Site header -->
       <header class="main">
         <a id="name" href="{% url jsutlovic-index %}" title="Jero Sutlovic">
           <h1 class="full-name"><span class="gnbg"><span class="given-name">Jero</span></span> <span class="fnbg"><span class="family-name">Sutlovic</span></span></h1>
         </a>
       </header>
 {% include "links-primary.djhtml" %}
-  
+      
+      <!-- Content -->
       <section id="contentWrap">
         {% block page %}
         {{ page.content|safe }}
         {% endblock page %}
       </section>
-        
+      
+      <!-- Site Footer -->
       <footer class="main">
         <p>
           Jero Sutlovic <span class="copy">&copy;</span> 2012
