@@ -126,7 +126,7 @@ h1.full-name span.given-name {
   display: block;
   width: 1em;
   font-size: 36px;
-  word-wrap: break-word;
+  /*word-wrap: break-word;*/ /* Commented for validation */
   /* Set large letter-spacing as precaution */
   letter-spacing: 0.5em;
   text-align: center;

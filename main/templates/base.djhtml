@@ -8,6 +8,11 @@
     <meta name="description" content="{{ page.description }}" />
     <meta name="keywords" content="Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery" />
     <meta name="author" content="Jero Sutlovic" />
+    
+    <!-- OpenID: MyOpenID -->
+    <link rel="openid2.local_id" href="http://youraccount.myopenid.com" />
+    <link rel="openid2.provider" href="http://www.myopenid.com/server" />
+    <meta http-equiv="X-XRDS-Location" content="http://www.myopenid.com/xrds?username=youraccount.myopenid.com" />
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.png" type="image/png" />
