@@ -3,6 +3,8 @@ from django.db.models import *
 
 #Options for date formatting
 DATE_CHOICES = (('M Y', "Month and Year"), ('Y', "Year only"))
+nums = tuple(range(100, -101, -1))
+NUM_CHOICES = tuple(zip(nums, [str(n) for n in nums]))
 
 #Find image path utility
 def get_image_path(instance, filename):
@@ -50,7 +52,7 @@ class Link(Model):
     url = CharField(max_length=512)
     
     #Weight of the link (left to right order)
-    weight = IntegerField(default=0)
+    weight = IntegerField(default=0, choices=NUM_CHOICES)
 
     #Disable the link?
     disabled = BooleanField(default=False)
@@ -94,7 +96,7 @@ class ContactDetail(Model):
     url = URLField(max_length=512, blank=True)
     
     #The weight (vertical position)
-    weight = IntegerField(default=0)
+    weight = IntegerField(default=0, choices=NUM_CHOICES)
     
     #For schema.org microdata markup
     itemprop = CharField(max_length=32, blank=True)
@@ -117,7 +119,7 @@ class Resume(Model):
     
     #Which order the resume is displayed.
     #Resume with highest weight is shown on /resume page
-    weight = IntegerField(default=0)
+    weight = IntegerField(default=0, choices=NUM_CHOICES)
     
     #HTML for resume's contact info section
     contactInfo = TextField(blank=True)
@@ -147,7 +149,7 @@ class ResumeSection(Model):
     title = CharField(max_length=64)
     
     #Weight of the section (where it's displayed)
-    weight = IntegerField(default=0)
+    weight = IntegerField(default=0, choices=NUM_CHOICES)
     
     #The resume the section is associated with
     resume = ManyToManyField('Resume', related_name='sections')
@@ -169,7 +171,7 @@ class ResumeSubSection(Model):
     title = CharField(max_length=128)
     
     #Weight of the section (where it's displayed)
-    weight = IntegerField(default=0)
+    weight = IntegerField(default=0, choices=NUM_CHOICES)
     
     #How do we display dates? (Options to pass to Django's built in date filter
     dateDisplay = CharField(max_length=16, blank=True, choices=DATE_CHOICES)
@@ -195,7 +197,7 @@ class ResumeSubSection(Model):
     
 class ResumeDetail(Model):
     #Weight of the detail
-    weight = IntegerField(default=0)
+    weight = IntegerField(default=0, choices=NUM_CHOICES)
     
     #Detail contents
     contents = CharField(max_length=256)
@@ -235,7 +237,7 @@ class Project(Model):
     dateTo = DateField(null=True, blank=True)
     
     #The weight of the project
-    weight = IntegerField(default=0)
+    weight = IntegerField(default=0, choices=NUM_CHOICES)
     
     #tags = ManyToMany - ProjectTechTag
     #images = ForeignKey - ProjectImage
@@ -272,7 +274,7 @@ class ProjectImage(Model):
     image = ImageField(upload_to=get_image_path)
     
     #For display ordering
-    weight = IntegerField(default=0)
+    weight = IntegerField(default=0, choices=NUM_CHOICES)
     
     class Meta:
         ordering = ['-weight']
