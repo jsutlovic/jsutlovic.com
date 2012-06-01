@@ -1,5 +1,5 @@
 *.pyc
 *.pyo
-static/images
 media
 JSutlovic/devel.db
+JSutlovic/settings.py
