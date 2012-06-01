@@ -19,6 +19,7 @@
     <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
     
+    <!-- JScrollPane - pretty scrolling -->
     <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.css" rel="stylesheet" type="text/css" />
     <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.lozenge.css" rel="stylesheet" type="text/css" />
     
