@@ -257,8 +257,8 @@ section#contentWrap {
   
   font-family: "PT Sans Caption", sans-serif;
   
-  /*background-color: #FFFFFF;*/
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0FFFFFF,endColorstr=#C0FFFFFF);
+  background-color: #FFFFFF;
+  /*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0FFFFFF,endColorstr=#C0FFFFFF);*/
   background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
   
