@@ -9,7 +9,7 @@
     <meta name="keywords" content="Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery" />
     <meta name="author" content="Jero Sutlovic" />
 
-    <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+    <!-- Favicons -->
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.png" type="image/png" />
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.ico" type="image/x-icon" />
     
