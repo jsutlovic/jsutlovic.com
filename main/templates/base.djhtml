@@ -80,8 +80,5 @@
 {% include "links-secondary.djhtml" %}
       </footer>
     </div>
-    <!-- <div id="topbar">
-      <span>You are using a bad browser! Please see here for some excellent alternatives: <a href="#link">Firefox</a>, <a href="#chrome">Chrome</a>.</span><a href="#close" id="close">Close</a>
-    </div> -->
   </body>
 </html>
