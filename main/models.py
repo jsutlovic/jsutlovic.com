@@ -15,20 +15,20 @@ def get_image_path(instance, filename):
 
 class Page(Model):
     #The page name/slug
-    name = SlugField(max_length=32, unique=True)
+    name = SlugField(max_length=32, unique=True, help_text="The page name")
     #The page title
-    title = CharField(max_length=256)
+    title = CharField(max_length=256, help_text="The page title")
     #A description of the page
-    description = CharField(max_length=256)
+    description = CharField(max_length=256, help_text="A description of the page (used in meta fields)")
     
     #Custom header content
-    header_content = TextField(blank=True)
+    header_content = TextField(blank=True, help_text="Custom header content")
     
     #The actual content
-    content = TextField()
+    content = TextField(help_text="The page content")
     
     #Whether the page will be full-height with content scrolling or expand the page
-    scrollable = BooleanField(default=False)
+    scrollable = BooleanField(default=False, help_text="full height with scroll or expand to fit")
     
     #display this in the admin interface
     def __unicode__(self):
@@ -43,19 +43,19 @@ class Link(Model):
     """Common link fields"""
     
     #The link text
-    name = CharField(max_length=128)
+    name = CharField(max_length=128, help_text="Link name")
     
     #The words displayed
-    title = CharField(max_length=128)
+    title = CharField(max_length=128, help_text="Words displayed")
     
     #The URL the site link refers to
-    url = CharField(max_length=512)
+    url = CharField(max_length=512, help_text="URL the link refers to")
     
     #Weight of the link (left to right order)
-    weight = IntegerField(default=0, choices=NUM_CHOICES)
+    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Weight (display order)")
 
     #Disable the link?
-    disabled = BooleanField(default=False)
+    disabled = BooleanField(default=False, help_text="Disable link")
     
     class Meta:
         abstract=True
