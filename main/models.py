@@ -165,25 +165,25 @@ class ResumeSection(Model):
 
 class ResumeSubSection(Model):
     #Subsection name (used for HTML)
-    name = CharField(max_length=64)
+    name = CharField(max_length=64, help_text="Unique name")
     
     #Title of the subsection
-    title = CharField(max_length=128)
+    title = CharField(max_length=128, help_text="Subsection title (text displayed)")
     
     #Weight of the section (where it's displayed)
-    weight = IntegerField(default=0, choices=NUM_CHOICES)
+    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Ordering")
     
-    #How do we display dates? (Options to pass to Django's built in date filter
-    dateDisplay = CharField(max_length=16, blank=True, choices=DATE_CHOICES)
+    #How do we display dates? (Options to pass to Django's built in date filter)
+    dateDisplay = CharField(max_length=16, blank=True, choices=DATE_CHOICES, help_text="Date display formatting (Used with Django date filter)")
     
     #Date of start (if any)
-    dateFrom = DateField(null=True, blank=True)
+    dateFrom = DateField(null=True, blank=True, help_text="Stard date")
     
     #Date of end (if any)
-    dateTo = DateField(null=True, blank=True)
+    dateTo = DateField(null=True, blank=True, help_text="End date")
     
     #The section it's related to
-    section = ForeignKey('ResumeSection', related_name='subsections')
+    section = ForeignKey('ResumeSection', related_name='subsections', help_text="Related section")
     
     #details = ForeignKey - ResumeDetail
     
@@ -197,13 +197,13 @@ class ResumeSubSection(Model):
     
 class ResumeDetail(Model):
     #Weight of the detail
-    weight = IntegerField(default=0, choices=NUM_CHOICES)
+    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Ordering")
     
     #Detail contents
-    contents = CharField(max_length=256)
+    contents = CharField(max_length=256, help_text="Contents (text displayed)")
     
     #Related subsection
-    subsection = ForeignKey('ResumeSubSection', related_name='details')
+    subsection = ForeignKey('ResumeSubSection', related_name='details', help_text="Related subsection")
     
     #Show as subsection - contents
     def __unicode__(self):
