@@ -64,7 +64,7 @@ class Link(Model):
 
 class PageLink(Link):
     #The page that the link is related to
-    page = ForeignKey('Page', related_name="links")
+    page = ForeignKey('Page', related_name="links", help_text="Related page")
     
     #Display this in the admin interface
     def __unicode__(self):
@@ -73,13 +73,13 @@ class PageLink(Link):
 
 class SiteLink(Link):
     #Is it a Primary link? (top of page)
-    primaryLinks = BooleanField(default=False)
+    primaryLinks = BooleanField(default=False, help_text="Primary link (top of page)")
     
     #Secondary link? (bottom of page)
-    secondaryLinks = BooleanField(default=False)
+    secondaryLinks = BooleanField(default=False, help_text="Secondary link (bottom of page)")
     
     #Related pages
-    page = OneToOneField('Page', null=True, blank=True)
+    page = OneToOneField('Page', null=True, blank=True, help_text="Related page")
     
     def __unicode__(self):
         return self.name
@@ -87,19 +87,19 @@ class SiteLink(Link):
 
 class ContactDetail(Model):
     #The type of the contact detail (website, email, etc)
-    type = CharField(max_length=64)
+    type = CharField(max_length=64, help_text="Type, e.g. website, email, url")
     
     #The value (text displayed)
-    value = CharField(max_length=256)
+    value = CharField(max_length=256, help_text="Text displayed")
     
     #If it's a link, the URL to go to
-    url = URLField(max_length=512, blank=True)
+    url = URLField(max_length=512, blank=True, help_text="Associated URL")
     
     #The weight (vertical position)
-    weight = IntegerField(default=0, choices=NUM_CHOICES)
+    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Weight (order displayed)")
     
     #For schema.org microdata markup
-    itemprop = CharField(max_length=32, blank=True)
+    itemprop = CharField(max_length=32, blank=True, help_text="For schema.org microdata")
     
     class Meta:
         ordering = ["-weight"]
@@ -112,22 +112,22 @@ class ContactDetail(Model):
 
 class Resume(Model):
     #resume name, unique. Used for ID (HTML)
-    name = SlugField(max_length=32, unique=True)
+    name = SlugField(max_length=32, unique=True, help_text="Unique name of resume")
     
     #What it's called
-    title = CharField(max_length=64)
+    title = CharField(max_length=64, help_text="Resume Title")
     
     #Which order the resume is displayed.
     #Resume with highest weight is shown on /resume page
-    weight = IntegerField(default=0, choices=NUM_CHOICES)
+    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Resume with highest weight is displayed on /resume")
     
     #HTML for resume's contact info section
-    contactInfo = TextField(blank=True)
+    contactInfo = TextField(blank=True, help_text="Contact information (displayed in header, HTML allowed)")
     
     #HTML for resume's footer section
-    footer = TextField(blank=True)
+    footer = TextField(blank=True, help_text="Resume footer (HTML allowed)")
     
-    pdf = BooleanField(default=False)
+    pdf = BooleanField(default=False, help_text="PDF included?")
     
     #sections = ManyToManyField - ResumeSection
     
@@ -143,16 +143,16 @@ class Resume(Model):
     
 class ResumeSection(Model):
     #Unique name of the section (used for HTML)
-    name = SlugField(max_length=64, unique=True)
+    name = SlugField(max_length=64, unique=True, help_text="Unique section name")
     
     #Title of the section
-    title = CharField(max_length=64)
+    title = CharField(max_length=64, help_text="Section title (text displayed)")
     
     #Weight of the section (where it's displayed)
-    weight = IntegerField(default=0, choices=NUM_CHOICES)
+    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="For ordering")
     
     #The resume the section is associated with
-    resume = ManyToManyField('Resume', related_name='sections')
+    resume = ManyToManyField('Resume', related_name='sections', help_text="Related resume")
     
     #subsections = ForeignKey - ResumeSubSection
     
