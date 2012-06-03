@@ -12,7 +12,7 @@
 {{ block.super }}
           <div class="contactdetails">
             {% for cdet in details %}
-            <dl class="contact-detail"><dt class="type">{{ cdet.type }}</dt> <dd class="value">{% if cdet.url %}<a href="{{ cdet.url }}">{% endif %}{{ cdet.value|safe }}{% if cdet.url %}</a>{% endif %}</dd></dl>
+            <dl class="contact-detail"><dt class="type">{{ cdet.type }}</dt> <dd class="value">{% if cdet.url %}<a href="{{ cdet.url|safe }}">{% endif %}{{ cdet.value|safe }}{% if cdet.url %}</a>{% endif %}</dd></dl>
             {% endfor %}
           </div>
 {% endblock %}

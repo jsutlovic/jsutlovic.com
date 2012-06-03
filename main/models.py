@@ -93,7 +93,7 @@ class ContactDetail(Model):
     value = CharField(max_length=256, help_text="Text displayed")
     
     #If it's a link, the URL to go to
-    url = URLField(max_length=512, blank=True, help_text="Associated URL")
+    url = CharField(max_length=512, blank=True, help_text="Associated URL")
     
     #The weight (vertical position)
     weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Weight (order displayed)")
