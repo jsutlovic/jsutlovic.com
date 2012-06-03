@@ -350,7 +350,8 @@ article#content img.right {
   margin-left: 10px;
 }
 article#content img.top {
-  margin-top: 2px;
+  margin-top: -2px;
+  margin-bottom: 10px;
 }
 
 article#content h3 {
@@ -360,6 +361,15 @@ article#content h3 {
 article#content p {
   line-height: 1.5em;
   margin: 0.5em 0;
+}
+
+article#content section {
+  clear: both;
+  padding: 0.5em 0;
+}
+
+article#content span.ipa a {
+  letter-spacing: 0.2em;
 }
 
 
