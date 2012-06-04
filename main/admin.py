@@ -18,7 +18,7 @@ admin.site.register(PageLink, PageLinkAdmin)
 class SiteLinkAdmin(ModelAdmin):
     list_display = ('name', 'title', 'url', 'weight', 'primaryLinks', 'secondaryLinks', 'disabled')
     list_display_links = ('name', 'title', 'url', 'weight')
-    ordering= ('-weight', 'name')
+    ordering= ('-primaryLinks', '-weight', 'name')
 
 admin.site.register(SiteLink, SiteLinkAdmin)
 
