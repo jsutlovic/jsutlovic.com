@@ -28,7 +28,8 @@ article#content article.project>h3 {
 }
 
 article.project>span.date {
-  margin-left: 8px;
+  float: right;
+  margin-right: 8px;
 }
 
 article.project>ul.techtags {

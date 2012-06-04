@@ -13,7 +13,7 @@
     <!-- OpenID 2: MyOpenID -->
     <link rel="openid2.local_id" href="http://jsutlovic.myopenid.com" />
     <link rel="openid2.provider" href="http://www.myopenid.com/server" />
-    <meta http-equiv="X-XRDS-Location" content="http://www.myopenid.com/xrds?username=jsutlovic.myopenid.com" />
+    <!--<meta http-equiv="X-XRDS-Location" content="http://www.myopenid.com/xrds?username=jsutlovic.myopenid.com" />-->
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.png" type="image/png" />
