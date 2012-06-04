@@ -13,7 +13,7 @@ ul.projects li {
 }
 
 article.project {
-  padding: 8px 0px;
+  padding: 8px 0px 4px 0px;
   clear: both;
   min-height: 98px;
   overflow: hidden;
