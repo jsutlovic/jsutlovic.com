@@ -37,8 +37,7 @@ def contact(request):
 
 
 def resume(request, name="", plain=False):
-    if not plain:
-        rpage = get_object_or_404( Page, name="resume" )
+    rpage = get_object_or_404( Page, name="resume" )
     
     if not name:
         rres = Resume.objects.all().order_by('-weight')[0]
@@ -46,7 +45,7 @@ def resume(request, name="", plain=False):
         rres = get_object_or_404( Resume, name=name )
     
     if plain:
-        return rr("resume-plain.djhtml", {"resume": rres}, request)
+        return rr("resume-plain.djhtml", {"page": rpage, "resume": rres}, request)
     
     return rr("resume-inpage.djhtml", {"page": rpage, "resume": rres}, request)
 
@@ -75,6 +74,17 @@ def page(request, name=""):
     rpage = get_object_or_404( Page, name=name )
     
     return rr("page.djhtml", {"page": rpage}, request)
+
+
+def under_construction(request):
+    epage = {'name': "under_construction",
+            'title': "Under Construction",
+            'description': "JSutlovic.com is under construction",
+            'header_content': "",
+            'content': "<p>JSutlovic.com is under construction but don't worry, the real site will be up in no time.</p>",
+            'scrollable': True}
+    
+    return render_to_response("page.djhtml", {"page": epage}, context_instance=RequestContext(request))
 
 def handler404(request):
     epage = {'name': "404",
