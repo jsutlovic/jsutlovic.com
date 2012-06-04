@@ -43,10 +43,10 @@ class Link(Model):
     """Common link fields"""
     
     #The link text
-    name = CharField(max_length=128, help_text="Link name")
+    name = CharField(max_length=128, help_text="Link text")
     
     #The words displayed
-    title = CharField(max_length=128, help_text="Words displayed")
+    title = CharField(max_length=128, help_text="Link title (hover text)")
     
     #The URL the site link refers to
     url = CharField(max_length=512, help_text="URL the link refers to")
@@ -216,28 +216,28 @@ class ResumeDetail(Model):
 
 class Project(Model):
     #Project shortname
-    name = SlugField(max_length=32, unique=True)
+    name = SlugField(max_length=32, unique=True, help_text="Shortname for the project")
     
     #Title (displayed name) of project
-    title = CharField(max_length=64)
+    title = CharField(max_length=64, help_text="Title (displayed name) of project")
     
     #Description of the project
-    description = TextField()
+    description = TextField(help_text="Project description")
     
     #URL of the project, if any
-    url = URLField(blank=True)
+    url = URLField(blank=True, help_text="URL to project")
     
     #How the dates should be displayed (if at all)
-    dateDisplay = CharField(max_length=16, blank=True, choices=DATE_CHOICES)
+    dateDisplay = CharField(max_length=16, blank=True, choices=DATE_CHOICES, help_text="Date formatting: Year/month and year/etc.")
     
     #Date of start (if any)
-    dateFrom = DateField(null=True, blank=True)
+    dateFrom = DateField(null=True, blank=True, help_text="Date project started")
     
     #Date of end (else consider current)
-    dateTo = DateField(null=True, blank=True)
+    dateTo = DateField(null=True, blank=True, help_text="Date project completed")
     
     #The weight of the project
-    weight = IntegerField(default=0, choices=NUM_CHOICES)
+    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Ordering")
     
     #tags = ManyToMany - ProjectTechTag
     #images = ForeignKey - ProjectImage
@@ -255,26 +255,26 @@ class Project(Model):
 
 class ProjectTechTag(Model):
     #Name of the tag
-    name = SlugField(max_length=32, unique=True)
+    name = SlugField(max_length=32, unique=True, help_text="Tag name")
     
     #Related project
-    projects = ManyToManyField('Project', related_name='tags')
+    projects = ManyToManyField('Project', related_name='tags', help_text="Related projects")
     
     def __unicode__(self):
         return self.name
     
 class ProjectImage(Model):
     #A short image description
-    title = CharField(max_length=128)
+    title = CharField(max_length=128, help_text="Image description")
     
     #Related project
-    project = ForeignKey('Project', related_name='images')
+    project = ForeignKey('Project', related_name='images', help_text="Related project")
     
     #The image file
-    image = ImageField(upload_to=get_image_path)
+    image = ImageField(upload_to=get_image_path, help_text="Image file")
     
     #For display ordering
-    weight = IntegerField(default=0, choices=NUM_CHOICES)
+    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Ordering")
     
     class Meta:
         ordering = ['-weight']
@@ -285,10 +285,10 @@ class ProjectImage(Model):
     
 class ProjectIcon(Model):
     #Related project this thumbnail is for
-    project = OneToOneField('Project', related_name='icon')
+    project = OneToOneField('Project', related_name='icon', help_text="Related project")
     
     #The image file
-    image = ImageField(upload_to=get_image_path)
+    image = ImageField(upload_to=get_image_path, help_text="Image file")
     
     def __unicode__(self):
         return "%s %s" % (self.project.name, "icon")
