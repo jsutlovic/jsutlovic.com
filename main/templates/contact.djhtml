@@ -12,7 +12,7 @@
 {{ block.super }}
           <div class="contactdetails" itemscope itemtype="http://schema.org/Person">
             {% for cdet in details %}
-            <dl class="contact-detail{% if cdet.type == "hidden" %} hidden{% endif %}"><dt class="type">{{ cdet.type }}</dt> <dd class="value"{% if cdet.itemprop %}itemprop="{{ cdet.itemprop }}"{% endif %}>{% if cdet.url %}<a href="{{ cdet.url|safe }}">{% endif %}{{ cdet.value|safe }}{% if cdet.url %}</a>{% endif %}</dd></dl>
+            <dl class="contact-detail{% if cdet.type == "hidden" %} hidden{% endif %}"><dt class="type">{{ cdet.type }}</dt> <dd class="value"{% if cdet.itemprop %} itemprop="{{ cdet.itemprop }}"{% endif %}>{% if cdet.url %}<a href="{{ cdet.url|safe }}">{% endif %}{{ cdet.value|safe }}{% if cdet.url %}</a>{% endif %}</dd></dl>
             {% endfor %}
           </div>
 {% endblock %}
