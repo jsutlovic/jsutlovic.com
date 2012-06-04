@@ -10,11 +10,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('main.views',
-    # Examples:
-    # url(r'^$', 'JSutlovic.views.home', name='home'),
-    # url(r'^JSutlovic/', include('JSutlovic.foo.urls')),
-    
-    url(r'^$', 'under_construction', name='jsutlovic-index'),
+    url(r'^$', 'about', name='jsutlovic-index'),
     url(r'^about$', 'about', name='jsutlovic-about'),
     url(r'^contact$', 'contact', name='jsutlovic-contact'),
     url(r'^resume$', 'resume', name='jsutlovic-resume'),
@@ -25,10 +21,6 @@ urlpatterns = patterns('main.views',
     url(r'^work/tech/(?P<techtag>\S+)$', 'projects', {"name":None}, name='jsutlovic-projects-techtag'),
     url(r'^work/(?P<name>\S+)$', 'projects', name='jsutlovic-projects-name'),
     url(r'^bcard$', RedirectView.as_view(url='/contact', permanent=False))
-    
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    
 )
 
 if settings.DEVELOPMENT:
@@ -44,7 +36,6 @@ if settings.DEVELOPMENT:
 
 #Extras
 urlpatterns += patterns('',
-                        # Uncomment the next line to enable the admin:
                         url(r'^admin/', include(admin.site.urls)),
                         
                         #Page catch-all
