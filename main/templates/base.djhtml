@@ -2,51 +2,64 @@
 <html lang="en">
   <head>
     {% block header %}
+    {% block meta %}
     <meta charset="utf-8" />
 
-    <title>{{ page.title }} | JSutlovic</title>
-    <meta name="description" content="{{ page.description }}" />
-    <meta name="keywords" content="Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery" />
+    <title>{% block title %}{{ page.title }} | JSutlovic{% endblock title %}</title>
+    <meta name="description" content="{% block description %}{{ page.description }}{% endblock description %}" />
+    <meta name="keywords" content="{% block keywords %}Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery{% endblock keywords %}" />
     <meta name="author" content="Jero Sutlovic" />
     
-    <!-- OpenID: MyOpenID -->
-    <link rel="openid2.local_id" href="http://youraccount.myopenid.com" />
+    <!-- OpenID 2: MyOpenID -->
+    <link rel="openid2.local_id" href="http://jsutlovic.myopenid.com" />
     <link rel="openid2.provider" href="http://www.myopenid.com/server" />
-    <meta http-equiv="X-XRDS-Location" content="http://www.myopenid.com/xrds?username=youraccount.myopenid.com" />
+    <meta http-equiv="X-XRDS-Location" content="http://www.myopenid.com/xrds?username=jsutlovic.myopenid.com" />
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.png" type="image/png" />
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.ico" type="image/x-icon" />
+    {% endblock meta %}
     
+    {% block styles %}
     <!-- == Styles == -->
     
+    {% block gfonts %}
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
+    {% endblock gfonts %}
     
     <!-- JScrollPane - pretty scrolling -->
     <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.css" rel="stylesheet" type="text/css" />
     <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.lozenge.css" rel="stylesheet" type="text/css" />
     
-    <!-- Main style -->
+    {% block sitestyle %}
+    <!-- Site-wide styles -->
     <link href="{{ STATIC_URL }}styles/style.css" rel="stylesheet" type="text/css" />
+    {% endblock sitestyle %}
+    {% endblock styles %}
     
+    {% block scripts %}
     <!-- == Scripts == -->
-    
     <script type="text/javascript" src="{{ STATIC_URL }}js/html5shiv.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jscrollpane.min.js"></script>
     
+    {% block fancybox %}
     <!-- Fancybox -->
     <link rel="stylesheet" href="{{ STATIC_URL }}styles/jquery.fancybox.css?v=2.0.6" type="text/css" media="screen" />
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fancybox.pack.js?v=2.0.6"></script>
     <link rel="stylesheet" href="{{ STATIC_URL }}styles/jquery.fancybox-buttons.css?v=1.0.2" type="text/css" media="screen" />
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fancybox-buttons.js?v=1.0.2"></script>
+    {% endblock fancybox %}
     
+    {% block sitescript %}
     <!-- Our site-wide scripts -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jsutlovic.js"></script>
+    {% endblock sitescript %}
     
+    {% block gaq %}
     <!-- Google Analytics -->
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -59,12 +72,14 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
+    {% endblock gaq %}
+    {% endblock scripts %}
     
     {% endblock header %}
-    
   </head>
-
+  
   <body id="{{ page.name }}">
+  {% block body %}
     <div class="main container {% if page.scrollable %}scroll{% endif %}">
       <!-- Site header -->
       <header class="main">
@@ -77,7 +92,7 @@
       <!-- Content -->
       <section id="contentWrap">
         {% block page %}
-        {{ page.content|safe }}
+{{ page.content|safe }}
         {% endblock page %}
       </section>
       
@@ -89,5 +104,6 @@
 {% include "links-secondary.djhtml" %}
       </footer>
     </div>
+  {% endblock body %}
   </body>
 </html>

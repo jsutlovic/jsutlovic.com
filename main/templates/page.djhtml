@@ -13,7 +13,7 @@
         
         <article id="content" class="scrollable">
           {% block content %}
-          {{ page.content|safe }}
+{{ page.content|safe }}
           {% endblock content %}
         </article>
 {% endblock page %}

@@ -46,10 +46,10 @@
             </li>
             {% endfor %}
           </ul>
-          {% endblock content %}
-          
+
           <footer>
-          	{{ resume.footer|safe }}
+            {{ resume.footer|safe }}
           </footer>
+          {% endblock content %}          
         </article>
 {% endblock page %}
