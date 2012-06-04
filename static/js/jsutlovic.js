@@ -11,7 +11,6 @@ $(function(){
     $(this).jScrollPane(
       {
         verticalGutter: -8,
-        verticalDragMaxHeight: 200
       }
     );
     var api = $(this).data('jsp');
