@@ -4,24 +4,28 @@ from django.contrib.admin import ModelAdmin, StackedInline, TabularInline
 
 class PageAdmin(ModelAdmin):
     list_display = ('name', 'title')
+    ordering = ('name',)
 
 admin.site.register(Page, PageAdmin)
 
 class PageLinkAdmin(ModelAdmin):
     list_display = ('name', 'title', 'url', 'weight', 'disabled')
     list_display_links = ('name', 'title', 'url', 'weight')
+    ordering = ('-weight', 'name')
 
 admin.site.register(PageLink, PageLinkAdmin)
 
 class SiteLinkAdmin(ModelAdmin):
     list_display = ('name', 'title', 'url', 'weight', 'primaryLinks', 'secondaryLinks', 'disabled')
     list_display_links = ('name', 'title', 'url', 'weight')
+    ordering= ('-weight', 'name')
 
 admin.site.register(SiteLink, SiteLinkAdmin)
 
 class ContactDetailAdmin(ModelAdmin):
     list_display = ('type', 'value', 'url', 'weight')
     list_display_links = ('type', 'value', 'url', 'weight')
+    ordering = ('-weight', 'type', )
 
 admin.site.register(ContactDetail, ContactDetailAdmin)
 

@@ -105,7 +105,7 @@ class ContactDetail(Model):
         ordering = ["-weight"]
     
     def __unicode__(self):
-        return " - ".join((str(self.weight), self.type, self.value))
+        return " - ".join((self.type, self.value))
     
 
 #Resume > Section > Subsection > Detail
