@@ -71,6 +71,8 @@ class ProjectIconInline(StackedInline):
 class ProjectTechTagInline(TabularInline):
     model = ProjectTechTag.projects.through
     extra = 1
+    def has_add_permission(self, request):
+        return True
 
 class ProjectImageInline(TabularInline):
     model = ProjectImage
@@ -79,7 +81,14 @@ class ProjectImageInline(TabularInline):
 class ProjectAdmin(ModelAdmin):
     list_display = ('name', 'title', 'weight')
     list_display_links = ('name', 'title', 'weight')
-    ordering = ('-weight',)
+    ordering = ('-weight','-dateTo')
     inlines = (ProjectIconInline, ProjectTechTagInline, ProjectImageInline)
 
 admin.site.register(Project, ProjectAdmin)
+
+
+class ProjectTechTagAdmin(ModelAdmin):
+    list_display = ('name',)
+    
+admin.site.register(ProjectTechTag, ProjectTechTagAdmin)
+
