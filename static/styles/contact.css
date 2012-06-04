@@ -21,6 +21,10 @@ dl.contact-detail {
   font-size: 14px;
 }
 
+dl.contact-detail.hidden {
+  display: none;
+}
+
 dl.contact-detail dt.type {
   float: left;
   width: 120px;
