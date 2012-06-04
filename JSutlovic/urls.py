@@ -9,8 +9,13 @@ from django.views.generic import RedirectView
 from django.contrib import admin
 admin.autodiscover()
 
+if settings.UNDER_CONSTRUCTION:
+    index = 'under_construction'
+else:
+    index = 'about'
+
 urlpatterns = patterns('main.views',
-    url(r'^$', 'about', name='jsutlovic-index'),
+    url(r'^$', index, name='jsutlovic-index'),
     url(r'^about$', 'about', name='jsutlovic-about'),
     url(r'^contact$', 'contact', name='jsutlovic-contact'),
     url(r'^resume$', 'resume', name='jsutlovic-resume'),
