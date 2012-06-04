@@ -14,7 +14,7 @@ urlpatterns = patterns('main.views',
     # url(r'^$', 'JSutlovic.views.home', name='home'),
     # url(r'^JSutlovic/', include('JSutlovic.foo.urls')),
     
-    url(r'^$', 'about', name='jsutlovic-index'),
+    url(r'^$', 'under_construction', name='jsutlovic-index'),
     url(r'^about$', 'about', name='jsutlovic-about'),
     url(r'^contact$', 'contact', name='jsutlovic-contact'),
     url(r'^resume$', 'resume', name='jsutlovic-resume'),
