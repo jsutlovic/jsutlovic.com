@@ -1,7 +1,8 @@
 /*** Contact-specific styling ***/
 
 body#contact div.container.scroll section>article#content {
-  padding-left: 96px;
+  padding: 10px 96px;
+  width: 528px;
 }
 
 h4.contactinfo {
@@ -25,4 +26,6 @@ dl.contact-detail dt.type {
   width: 120px;
 }
 
-
+dl.contact-detail dl.value {
+  width: 408px;
+}
