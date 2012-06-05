@@ -7,16 +7,18 @@ LASTMOD = date(2012, 6, 4)
 
 class StaticSitemap(Sitemap):
     changefreq="monthly"
-    priority=1.0
     
     def items(self):
         return settings.SITEMAP_STATICS
     
-    def lastmod(self, index):
+    def lastmod(self, page):
         return LASTMOD
     
-    def location(self, index):
-        return str(index)
+    def location(self, page):
+        return page[0]
+    
+    def priority(self, page):
+        return page[1]
 
 class PageSitemap(Sitemap):
     changefreq="monthly"
