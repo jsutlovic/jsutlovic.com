@@ -5,7 +5,7 @@
     {% block meta %}
     <meta charset="utf-8" />
 
-    <title>{% block title %}{{ page.title }} | JSutlovic{% endblock title %}</title>
+    <title>{% block title %}{{ page.title }} | Jero Sutlovic{% endblock title %}</title>
     <meta name="description" content="{% block description %}{{ page.description }}{% endblock description %}" />
     <meta name="keywords" content="{% block keywords %}Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery{% endblock keywords %}" />
     <meta name="author" content="Jero Sutlovic" />
