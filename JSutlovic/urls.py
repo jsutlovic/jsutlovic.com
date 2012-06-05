@@ -36,6 +36,9 @@ if settings.DEVELOPMENT:
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     )
 
+#Admin pages
+if settings.ADMIN_ENABLED:
+    urlpatterns += patterns('', url(r'^admin/', include(admin.site.urls)),)
 
 #Extras
 urlpatterns += patterns('',
@@ -48,9 +51,6 @@ urlpatterns += patterns('',
     #Sitemap
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
-    #Admin pages
-    url(r'^admin/', include(admin.site.urls)),
-    
     #Page catch-all
     url(r'^(?P<name>\S+)$', 'main.views.page', name='jsutlovic-page'),
 )
