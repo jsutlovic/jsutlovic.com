@@ -5,6 +5,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from django.views.generic import RedirectView
 
+from main.sitemaps import sitemaps
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -24,7 +26,7 @@ urlpatterns = patterns('main.views',
     url(r'^resume/(?P<name>\S+)$', 'resume', name='jsutlovic-resume-name'),
     url(r'^work$', 'projects', name='jsutlovic-projects'),
     url(r'^work/tech/(?P<techtag>\S+)$', 'projects', {"name":None}, name='jsutlovic-projects-techtag'),
-    url(r'^work/(?P<name>\S+)$', 'projects', name='jsutlovic-projects-name'),
+    #url(r'^work/(?P<name>\S+)$', 'projects', name='jsutlovic-projects-name'),
     url(r'^bcard$', RedirectView.as_view(url='/contact', permanent=False))
 )
 
@@ -38,13 +40,16 @@ if settings.DEVELOPMENT:
     )
 
 
-
 #Extras
 urlpatterns += patterns('',
-                        url(r'^admin/', include(admin.site.urls)),
-                        
-                        #Page catch-all
-                        url(r'^(?P<name>\S+)$', 'main.views.page', name='jsutlovic-page'),
+        #Sitemap
+        (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+
+        #Admin pages
+        url(r'^admin/', include(admin.site.urls)),
+        
+        #Page catch-all
+        url(r'^(?P<name>\S+)$', 'main.views.page', name='jsutlovic-page'),
 )
 
 handler404 = "main.views.handler404"
