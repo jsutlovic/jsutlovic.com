@@ -262,6 +262,11 @@ class ProjectTechTag(Model):
     
     def __unicode__(self):
         return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('jsutlovic-projects-techtag', [str(self.name)])
+
     
 class ProjectImage(Model):
     #A short image description
