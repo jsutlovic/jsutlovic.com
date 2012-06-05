@@ -40,7 +40,7 @@
               <ul class="techtags">
                 <li><h4>Technologies:</h4></li>
                 {% for tag in project.get_tags %}
-                <li><a href="{% url jsutlovic-projects-techtag techtag=tag.name %}">{{ tag.name }}</a></li>
+                <li><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></li>
                 {% endfor %}
               </ul>
               <p class="description">{{ project.description|safe }}</p>
