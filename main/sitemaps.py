@@ -4,6 +4,19 @@ from main.models import Page, Resume, ProjectTechTag
 
 LASTMOD = date(2012, 6, 4)
 
+class IndexSitemap(Sitemap):
+    changefreq="monthly"
+    priority=1.0
+    
+    def items(self):
+        return ['index']
+    
+    def lastmod(self, index):
+        return LASTMOD
+    
+    def location(self, index):
+        return '/'
+
 class PageSitemap(Sitemap):
     changefreq="monthly"
     priority=0.9
@@ -48,6 +61,7 @@ class ProjectTechtagSitemap(Sitemap):
         return LASTMOD
 
 sitemaps = {
+    'index': IndexSitemap,
     'pages': PageSitemap,
     'resumes': ResumeSitemap,
     'plainresumes': ResumePlainSitemap,
