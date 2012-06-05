@@ -1,21 +1,22 @@
 from datetime import date
+from django.conf import settings
 from django.contrib.sitemaps import Sitemap
 from main.models import Page, Resume, ProjectTechTag
 
 LASTMOD = date(2012, 6, 4)
 
-class IndexSitemap(Sitemap):
+class StaticSitemap(Sitemap):
     changefreq="monthly"
     priority=1.0
     
     def items(self):
-        return ['index']
+        return settings.SITEMAP_STATICS
     
     def lastmod(self, index):
         return LASTMOD
     
     def location(self, index):
-        return '/'
+        return str(index)
 
 class PageSitemap(Sitemap):
     changefreq="monthly"
@@ -61,7 +62,7 @@ class ProjectTechtagSitemap(Sitemap):
         return LASTMOD
 
 sitemaps = {
-    'index': IndexSitemap,
+    'index': StaticSitemap,
     'pages': PageSitemap,
     'resumes': ResumeSitemap,
     'plainresumes': ResumePlainSitemap,
