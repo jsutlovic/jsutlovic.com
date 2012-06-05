@@ -1,8 +1,5 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
-from django.conf.urls.static import static
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
 from django.views.generic import RedirectView
 
 from main.sitemaps import sitemaps
@@ -27,7 +24,7 @@ urlpatterns = patterns('main.views',
     url(r'^work$', 'projects', name='jsutlovic-projects'),
     url(r'^work/tech/(?P<techtag>\S+)$', 'projects', {"name":None}, name='jsutlovic-projects-techtag'),
     #url(r'^work/(?P<name>\S+)$', 'projects', name='jsutlovic-projects-name'),
-    url(r'^bcard$', RedirectView.as_view(url='/contact', permanent=False))
+    url(r'^bcard$', RedirectView.as_view(url='/contact', permanent=False)),
 )
 
 if settings.DEVELOPMENT:
@@ -42,14 +39,20 @@ if settings.DEVELOPMENT:
 
 #Extras
 urlpatterns += patterns('',
-        #Sitemap
-        (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    #Robots.txt
+    url(r'^robots\.txt$', 'main.views.robots', name='jsutlovic-robots'),
+    
+    #Favicon
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon16.ico')),
 
-        #Admin pages
-        url(r'^admin/', include(admin.site.urls)),
-        
-        #Page catch-all
-        url(r'^(?P<name>\S+)$', 'main.views.page', name='jsutlovic-page'),
+    #Sitemap
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+
+    #Admin pages
+    url(r'^admin/', include(admin.site.urls)),
+    
+    #Page catch-all
+    url(r'^(?P<name>\S+)$', 'main.views.page', name='jsutlovic-page'),
 )
 
 handler404 = "main.views.handler404"

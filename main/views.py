@@ -86,6 +86,9 @@ def under_construction(request):
     
     return render_to_response("page.djhtml", {"page": epage}, context_instance=RequestContext(request))
 
+def robots(request):
+    return render_to_response("robots.txt", mimetype="text/plain")
+
 def handler404(request):
     epage = {'name': "404",
             'title': "Page Not Found",
