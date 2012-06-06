@@ -2,7 +2,7 @@
 
 from django.shortcuts             import render_to_response, get_object_or_404, redirect
 from django.template              import Context, loader, RequestContext
-from django.http                  import HttpResponse, Http404
+from django.http                  import HttpResponse, HttpResponseNotFound, HttpResponseServerError
 
 import logging
 
@@ -11,7 +11,7 @@ from main.models import Page, SiteLink, ContactDetail, Resume, Project, ProjectT
 
 logger = logging.getLogger(__name__)
 
-def rr(template, context, request):
+def rr(template, context, request, status=200):
     links = {"primary": SiteLink.objects.filter(primaryLinks=True, disabled=False).order_by('-weight'),
              "secondary": SiteLink.objects.filter(secondaryLinks=True, disabled=False).order_by('-weight'),
             }
@@ -21,6 +21,11 @@ def rr(template, context, request):
     
     context["links"] = links
     
+    if status == 404:
+        return HttpResponseNotFound(loader.render_to_string(template, context, RequestContext(request)))
+    elif status == 500:
+        return HttpResponseServerError(loader.render_to_string(template, context, RequestContext(request)))
+        
     return render_to_response(template, context, context_instance=RequestContext(request))
 
 def about(request):
@@ -97,7 +102,7 @@ def handler404(request):
             'content': "<p>Looks like the page you're looking for isn't here.</p>",
             'scrollable': True}
     
-    return rr("page.djhtml", {"page": epage}, request)
+    return rr("page.djhtml", {"page": epage}, request, status=404)
 
 def handler500(request):
     epage = {'name': "500",
@@ -107,5 +112,5 @@ def handler500(request):
             'content': "<p>Uhoh, looks like the server made a boo-boo.</p>",
             'scrollable': True}
     
-    return rr("page.djhtml", {"page": epage}, request)
+    return rr("page.djhtml", {"page": epage}, request, status=500)
 
