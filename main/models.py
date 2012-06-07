@@ -13,6 +13,10 @@ def get_image_path(instance, filename):
     elif isinstance(instance, ProjectIcon):
         return "images/%(project)s/icon.png" % {'project': instance.project.name}
 
+def get_pdf_path(instance, filename):
+    if isinstance(instance, Resume):
+        return "files/resume/%(filename)s.pdf" % {'filename': instance.name}
+
 class Page(Model):
     #The page name/slug
     name = SlugField(max_length=32, unique=True, help_text="The page name")
@@ -127,7 +131,8 @@ class Resume(Model):
     #HTML for resume's footer section
     footer = TextField(blank=True, help_text="Resume footer (HTML allowed)")
     
-    pdf = BooleanField(default=False, help_text="PDF included?")
+    #PDF file for resume
+    pdf = FileField(upload_to=get_pdf_path, blank=True, help_text="PDF version")
     
     #sections = ManyToManyField - ResumeSection
     
@@ -177,7 +182,7 @@ class ResumeSubSection(Model):
     dateDisplay = CharField(max_length=16, blank=True, choices=DATE_CHOICES, help_text="Date display formatting (Used with Django date filter)")
     
     #Date of start (if any)
-    dateFrom = DateField(null=True, blank=True, help_text="Stard date")
+    dateFrom = DateField(null=True, blank=True, help_text="Start date")
     
     #Date of end (if any)
     dateTo = DateField(null=True, blank=True, help_text="End date")
