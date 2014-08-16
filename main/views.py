@@ -27,7 +27,7 @@ def rr(template, context, request, status=200):
              }
 
     if "page" in context and isinstance(context["page"], Page):
-        links["page"] = context["page"].linksq.filter(disabled=False) \
+        links["page"] = context["page"].links.filter(disabled=False) \
                                        .order_by('-weight')
 
     context["links"] = links
