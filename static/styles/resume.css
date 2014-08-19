@@ -88,6 +88,10 @@ article#content.resume ul.section>li>span.date {
   margin-right: 32px;
 }
 
+article#content.resume ul.section li.detail {
+  line-height: 1.45em;
+}
+
 article#content.resume ul.subsection {
   padding: 0 0 12px 0;
 }

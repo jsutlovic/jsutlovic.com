@@ -179,7 +179,7 @@ nav.main.primary {
   top: 0px;
   right: 0px;
   margin-right: 32px;
-  font-family: 'Quattrocento Sans', sans-serif;  
+  font-family: 'Quattrocento Sans', sans-serif;
   height: 100%;
 
   z-index: 20;
@@ -206,18 +206,18 @@ nav.main.primary ul li a {
   padding: 12px;
 }
 
-nav.main.primary ul li:hover {
-  background-color: #CEE7B2; /* 40% #84C33F */
-  background-color: rgba(132,195,63,0.2);
-}
-
 nav.main.primary ul li.selected {
   color: #3772B8;
-  background-color: #9DCF65; /* 80% #84C33F */
-  background-color: rgba(132,195,63,0.6);
+  background-color: #F1F7EA; /* 10% #84C33F */
+  background-color: rgba(132,195,63,0.1);
 }
 nav.main.primary ul li.selected a {
   color: #3772B8;
+}
+
+nav.main.primary ul li:hover {
+  background-color: #E4F1D6; /* 20% #84C33F */
+  background-color: rgba(132,195,63,0.2);
 }
 
 
