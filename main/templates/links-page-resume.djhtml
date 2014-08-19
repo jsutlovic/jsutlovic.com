@@ -1,6 +1,6 @@
           <nav class="page">
             <ul>
-              <li><a href="{% url jsutlovic-resume-name-plain name=resume.name %}" title="Printer Friendly Version (opens in new window)" target="_blank">Printer Friendly</a></li>
-              {% if resume.pdf %}<li><a href="{{ resume.pdf.url }}" title="Printable PDF version">PDF</a></li>{% endif %}
+              <li><a href="{% url jsutlovic-resume-name-plain name=meta.name %}" title="Printer Friendly Version (opens in new window)" target="_blank">Printer Friendly</a></li>
+              {% if meta.pdf %}<li><a href="{{ meta.pdf.url }}" title="Printable PDF version">PDF</a></li>{% endif %}
             </ul>
           </nav>

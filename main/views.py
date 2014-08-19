@@ -1,10 +1,10 @@
 # Create your views here.
+import yaml
+import logging
 
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import loader, RequestContext
 from django.http import HttpResponseNotFound, HttpResponseServerError
-
-import logging
 
 from main.models import Page, SiteLink, ContactDetail, Resume, \
     Project, ProjectTechTag
@@ -66,12 +66,11 @@ def resume(request, name="", plain=False):
     else:
         rres = get_object_or_404(Resume, name=name)
 
-    if plain:
-        return rr("resume-plain.djhtml",
-                  {"page": rpage, "resume": rres},
-                  request)
+    rdata = yaml.load(rres.data)
 
-    return rr("resume-inpage.djhtml", {"page": rpage, "resume": rres}, request)
+    tpl = "resume-plain.djhtml" if plain else "resume-inpage.djhtml"
+
+    return rr(tpl, {"page": rpage, "meta": rres, "resume": rdata}, request)
 
 
 def projects(request, name="", techtag=""):

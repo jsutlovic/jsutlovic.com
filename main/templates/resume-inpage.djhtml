@@ -14,19 +14,19 @@
 {% include "links-page-resume.djhtml" %}
         </header>
 
-        <article id="content" class="scrollable resume {{ resume.name }}">
+        <article id="content" class="scrollable resume {{ meta.name }}">
           {% block content %}
           <header itemscope itemtype="http://schema.org/Person">
             <h1 class="name" itemprop="name">Jero Sutlovic</h1>
-            {{ resume.contactInfo|safe }}
+            {{ meta.contactInfo|safe }}
           </header>
 
           <ul class="resume">
-            {% for section in resume.sections.all %}
+            {% for section in resume %}
             <li><h2>{{ section.title }}</h2></li>
             <li>
               <ul class="section {{ section.name }}">
-                {% for sub in section.subsections.all %}
+                {% for sub in section.sections %}
                   <li>
                     <h3>{{ sub.title }}</h3>
                     {% if sub.dateDisplay %}<span class="date">
@@ -36,8 +36,8 @@
                   </li>
                   <li>
                     <ul class="subsection {{ sub.name }}">
-                      {% for detail in sub.details.all %}
-                      <li class="detail {% if forloop.first %}first{% endif %}">{{ detail.contents }}</li>
+                      {% for detail in sub.details %}
+                      <li class="detail {% if forloop.first %}first{% endif %}">{{ detail }}</li>
                       {% endfor %}
                     </ul>
                   </li>
@@ -48,8 +48,8 @@
           </ul>
 
           <footer>
-            {{ resume.footer|safe }}
+            {{ meta.footer|safe }}
           </footer>
-          {% endblock content %}          
+          {% endblock content %}
         </article>
 {% endblock page %}
