@@ -1,6 +1,14 @@
-from main.models import Page, PageLink, SiteLink, ContactDetail, Resume, \
-    ResumeSection, ResumeSubSection, ResumeDetail, Project, ProjectTechTag, \
-    ProjectIcon, ProjectImage
+from main.models import (
+    Page,
+    PageLink,
+    SiteLink,
+    ContactDetail,
+    Resume,
+    Project,
+    ProjectTechTag,
+    ProjectIcon,
+    ProjectImage
+)
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin, StackedInline, TabularInline
 
@@ -43,29 +51,6 @@ class ResumeAdmin(ModelAdmin):
     list_display_links = ('name', 'title', 'weight')
 
 admin.site.register(Resume, ResumeAdmin)
-
-
-class ResumeSectionAdmin(ModelAdmin):
-    list_display = ('name', 'title', 'weight')
-    list_display_links = ('name', 'title', 'weight')
-
-admin.site.register(ResumeSection, ResumeSectionAdmin)
-
-
-class ResumeSubSectionAdmin(ModelAdmin):
-    list_display = ('name', 'title', 'weight', 'section')
-    list_display_links = ('name', 'title', 'weight')
-    ordering = ('section', '-weight', )
-
-admin.site.register(ResumeSubSection, ResumeSubSectionAdmin)
-
-
-class ResumeDetailAdmin(ModelAdmin):
-    list_display = ('contents', 'weight', 'subsection')
-    list_display_links = ('contents', 'weight')
-    ordering = ('subsection', '-weight', )
-
-admin.site.register(ResumeDetail, ResumeDetailAdmin)
 
 
 #Project admins
