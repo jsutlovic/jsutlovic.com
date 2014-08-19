@@ -1,7 +1,19 @@
 from django.db import models
-from django.db.models import Model, SlugField, CharField, TextField, \
-    BooleanField, IntegerField, ForeignKey, OneToOneField, FileField, \
-    ManyToManyField, DateField, URLField, ImageField
+from django.db.models import (
+    Model,
+    SlugField,
+    CharField,
+    TextField,
+    BooleanField,
+    IntegerField,
+    ForeignKey,
+    OneToOneField,
+    FileField,
+    ManyToManyField,
+    DateField,
+    URLField,
+    ImageField
+)
 
 #Options for date formatting
 DATE_CHOICES = (('M Y', "Month and Year"), ('Y', "Year only"))
@@ -12,11 +24,11 @@ NUM_CHOICES = tuple(zip(nums, [str(n) for n in nums]))
 #Find image path utility
 def get_image_path(instance, filename):
     if isinstance(instance, ProjectImage):
-        return "images/%(project)s/%(filename)s" % \
-            {'project': instance.project.name, 'filename': filename}
+        return ("images/%(project)s/%(filename)s" %
+            {'project': instance.project.name, 'filename': filename})
     elif isinstance(instance, ProjectIcon):
-        return "images/%(project)s/icon.png" % \
-            {'project': instance.project.name}
+        return ("images/%(project)s/icon.png" %
+            {'project': instance.project.name})
 
 
 def get_pdf_path(instance, filename):
@@ -141,7 +153,7 @@ class ContactDetail(Model):
         return " - ".join((self.type, self.value))
 
 
-#Resume > Section > Subsection > Detail
+#Resume
 
 class Resume(Model):
     #resume name, unique. Used for ID (HTML)
@@ -178,6 +190,9 @@ class Resume(Model):
         blank=True,
         help_text="PDF version")
 
+    #Resume data in YAML format
+    data = TextField(help_text="YAML resume data")
+
     #sections = ManyToManyField - ResumeSection
 
     class Meta:
@@ -189,102 +204,6 @@ class Resume(Model):
     @models.permalink
     def get_absolute_url(self):
         return ('jsutlovic-resume-name', [str(self.name)])
-
-
-class ResumeSection(Model):
-    #Unique name of the section (used for HTML)
-    name = SlugField(
-        max_length=64,
-        unique=True,
-        help_text="Unique section name")
-
-    #Title of the section
-    title = CharField(
-        max_length=64,
-        help_text="Section title (text displayed)")
-
-    #Weight of the section (where it's displayed)
-    weight = IntegerField(
-        default=0,
-        choices=NUM_CHOICES,
-        help_text="For ordering")
-
-    #The resume the section is associated with
-    resume = ManyToManyField(
-        'Resume',
-        related_name='sections',
-        help_text="Related resume")
-
-    #subsections = ForeignKey - ResumeSubSection
-
-    def __unicode__(self):
-        return self.title
-
-    class Meta:
-        ordering = ['-weight']
-
-
-class ResumeSubSection(Model):
-    #Subsection name (used for HTML)
-    name = CharField(max_length=64, help_text="Unique name")
-
-    #Title of the subsection
-    title = CharField(
-        max_length=128,
-        help_text="Subsection title (text displayed)")
-
-    #Weight of the section (where it's displayed)
-    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Ordering")
-
-    #How we display dates (Options to pass to Django's built in date filter)
-    dateDisplay = CharField(
-        max_length=16,
-        blank=True,
-        choices=DATE_CHOICES,
-        help_text="Date display formatting (Used with Django date filter)")
-
-    #Date of start (if any)
-    dateFrom = DateField(null=True, blank=True, help_text="Start date")
-
-    #Date of end (if any)
-    dateTo = DateField(null=True, blank=True, help_text="End date")
-
-    #The section it's related to
-    section = ForeignKey(
-        'ResumeSection',
-        related_name='subsections',
-        help_text="Related section")
-
-    #details = ForeignKey - ResumeDetail
-
-    def __unicode__(self):
-        return self.title
-
-    #Default order is by descending weight
-    class Meta:
-        ordering = ['-weight']
-
-
-class ResumeDetail(Model):
-    #Weight of the detail
-    weight = IntegerField(default=0, choices=NUM_CHOICES, help_text="Ordering")
-
-    #Detail contents
-    contents = CharField(max_length=256, help_text="Contents (text displayed)")
-
-    #Related subsection
-    subsection = ForeignKey(
-        'ResumeSubSection',
-        related_name='details',
-        help_text="Related subsection")
-
-    #Show as subsection - contents
-    def __unicode__(self):
-        return " - ".join([self.subsection.name, self.contents])
-
-    #Order by descending weight
-    class Meta:
-        ordering = ['-weight']
 
 
 class Project(Model):
