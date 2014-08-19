@@ -2,9 +2,9 @@
 
 {% block header %}
     {{ block.super }}
-    
+
     <link href="{{ STATIC_URL }}styles/resume.css" rel="stylesheet" type="text/css" />
-    
+
 {% endblock header %}
 
 
@@ -13,14 +13,14 @@
           <h2 class="title">{{ page.title }}</h2>
 {% include "links-page-resume.djhtml" %}
         </header>
-        
+
         <article id="content" class="scrollable resume {{ resume.name }}">
           {% block content %}
           <header itemscope itemtype="http://schema.org/Person">
             <h1 class="name" itemprop="name">Jero Sutlovic</h1>
             {{ resume.contactInfo|safe }}
           </header>
-          
+
           <ul class="resume">
             {% for section in resume.sections.all %}
             <li><h2>{{ section.title }}</h2></li>

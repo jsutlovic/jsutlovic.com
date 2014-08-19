@@ -9,7 +9,7 @@
     <meta name="description" content="{% block description %}{{ page.description }}{% endblock description %}" />
     <meta name="keywords" content="{% block keywords %}Jero Sutlovic,JSutlovic,software developer,python,web,application,html5,css3,javascript,jquery{% endblock keywords %}" />
     <meta name="author" content="Jero Sutlovic" />
-    
+
     <!-- OpenID 2: MyOpenID -->
     <link rel="openid2.local_id" href="http://jsutlovic.myopenid.com" />
     <link rel="openid2.provider" href="http://www.myopenid.com/server" />
@@ -19,33 +19,33 @@
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.png" type="image/png" />
     <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon16.ico" type="image/x-icon" />
     {% endblock meta %}
-    
+
     {% block styles %}
     <!-- == Styles == -->
-    
+
     {% block gfonts %}
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
     {% endblock gfonts %}
-    
+
     <!-- JScrollPane - pretty scrolling -->
     <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.css" rel="stylesheet" type="text/css" />
     <link href="{{ STATIC_URL }}styles/jquery.jscrollpane.lozenge.css" rel="stylesheet" type="text/css" />
-    
+
     {% block sitestyle %}
     <!-- Site-wide styles -->
     <link href="{{ STATIC_URL }}styles/style.css" rel="stylesheet" type="text/css" />
     {% endblock sitestyle %}
     {% endblock styles %}
-    
+
     {% block scripts %}
     <!-- == Scripts == -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/html5shiv.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jscrollpane.min.js"></script>
-    
+
     {% block fancybox %}
     <!-- Fancybox -->
     <link rel="stylesheet" href="{{ STATIC_URL }}styles/jquery.fancybox.css?v=2.0.6" type="text/css" media="screen" />
@@ -53,19 +53,19 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}styles/jquery.fancybox-buttons.css?v=1.0.2" type="text/css" media="screen" />
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fancybox-buttons.js?v=1.0.2"></script>
     {% endblock fancybox %}
-    
+
     {% block sitescript %}
     <!-- Our site-wide scripts -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jsutlovic.js"></script>
     {% endblock sitescript %}
-    
+
     {% block gaq %}
     <!-- Google Analytics -->
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-31916872-1']);
       _gaq.push(['_trackPageview']);
-    
+
       (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -74,10 +74,10 @@
     </script>
     {% endblock gaq %}
     {% endblock scripts %}
-    
+
     {% endblock header %}
   </head>
-  
+
   <body id="{{ page.name }}">
   {% block body %}
     <div class="main container {% if page.scrollable %}scroll{% endif %}">
@@ -88,14 +88,14 @@
         </a>
       </header>
 {% include "links-primary.djhtml" %}
-      
+
       <!-- Content -->
       <section id="contentWrap">
         {% block page %}
 {{ page.content|safe }}
         {% endblock page %}
       </section>
-      
+
       <!-- Site Footer -->
       <footer class="main">
         <p>

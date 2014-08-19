@@ -18,9 +18,9 @@ div#topbar {
 
   background-color: #3772B8;
   color: #FFFFFF;
-  
+
   z-index: 100;
-  
+
   font-family: "PT Sans Caption", sans-serif;
   font-size: 14px;
   line-height: 18px;
@@ -64,7 +64,7 @@ div.main.container {
     margin: 0 auto;
     width: 720px;
     min-height: 600px;
-    
+
    background-color: #FFFFFF;
 }
 
@@ -83,11 +83,11 @@ header.main {
     width: 100%;
     font-family: 'Quattrocento Sans', sans-serif;
     font-weight: 700;
-    
+
     background-color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.75);
     border-bottom: 2px solid #84C33F;
-    
+
     z-index: 10;
 }
 
@@ -110,7 +110,7 @@ h1.full-name span.gnbg {
   position: absolute;
   top: 5px;
   left: 0px;
-  
+
   width: 18px;
   height: 129px;
   background: url("/static/images/Jero.png") repeat-x 0 0;
@@ -131,7 +131,7 @@ h1.full-name span.given-name {
   letter-spacing: 0.5em;
   text-align: center;
   line-height: 75%;
-  
+
   color: #464C52;
   visibility: hidden;
 }
@@ -147,7 +147,7 @@ h1.full-name span.fnbg {
   position: absolute;
   top: 5px;
   left: 14px;
-  
+
   width: 176px;
   height: 34px;
   background: url("/static/images/Sutlovic.png") repeat-y 0 0;
@@ -164,7 +164,7 @@ h1.full-name span.family-name {
   line-height: 50px;
   text-transform: uppercase;
   color: #3772B8;
-  
+
   visibility: hidden;
 }
 h1.full-name span.family-name:first-letter {
@@ -243,14 +243,14 @@ div.main.container.scroll section#contentWrap {
 
 section#contentWrap {
   position: relative;
-  
+
   font-family: "PT Sans Caption", sans-serif;
-  
+
   background-color: #FFFFFF;
   /*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0FFFFFF,endColorstr=#C0FFFFFF);*/
   background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
-  
+
   border-top: 2px solid #3772B8;
   border-bottom: 2px solid #84C33F;
 
@@ -260,7 +260,7 @@ section#contentWrap {
 section#contentWrap>header {
   position: relative;
   height: 80px;
-  
+
   z-index: 50;
 }
 
@@ -304,7 +304,7 @@ nav.page a:focus {
 #content {
   position: relative;
   top: 0px;
-  
+
   width: 656px;
   padding: 10px 32px;
   z-index: 50;
@@ -395,14 +395,14 @@ footer.main {
   bottom: 0px;
   height: 46px;
   width: 100%;
-  
+
   font-family: "PT Sans Caption", sans-serif;
-  
+
   background-color: #FFFFFF;
   background-color: rgba(255, 255, 255, 0.75);
   border-top: 2px solid #3772B8;
   z-index: 40;
-  
+
   text-align: center;
   font-size: 12px;
   overflow: hidden;
@@ -432,7 +432,7 @@ footer.main nav ul li {
   display: block;
   float: left;
   width: 80px;
-  
+
   text-transform: uppercase;
   font-weight: bold;
 }
