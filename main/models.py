@@ -24,10 +24,10 @@ NUM_CHOICES = tuple(zip(nums, [str(n) for n in nums]))
 #Find image path utility
 def get_image_path(instance, filename):
     if isinstance(instance, ProjectImage):
-        return ("images/%(project)s/%(filename)s" %
+        return "images/{project}/{filename}".format(
             {'project': instance.project.name, 'filename': filename})
     elif isinstance(instance, ProjectIcon):
-        return ("images/%(project)s/icon.png" %
+        return "images/{project}/icon.png".format(
             {'project': instance.project.name})
 
 
