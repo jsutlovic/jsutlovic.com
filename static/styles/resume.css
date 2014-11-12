@@ -81,7 +81,7 @@ article#content.resume ul.section>li>h3 {
 	color: #3772B8;
 }
 
-article#content.resume ul.section>li>span.date {
+article#content.resume ul.section>li>span.date, article#content.resume ul.section>li>span.url {
   float: right;
   line-height: 20px;
   height: 14px;

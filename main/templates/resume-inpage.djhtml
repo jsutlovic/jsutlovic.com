@@ -29,6 +29,7 @@
                 {% for sub in section.sections %}
                   <li>
                     <h3>{{ sub.title }}</h3>
+                    {% if sub.url %}<span class="url"><a href="{{ sub.url }}">{{ sub.url }}</a></span>{% endif %}
                     {% if sub.dateDisplay %}<span class="date">
                       {% if sub.dateFrom %}<span class="dateFrom">{{ sub.dateFrom|date:sub.dateDisplay }}</span> &ndash; {% endif %}
                       {% if sub.dateTo %}<span class="dateTo">{{ sub.dateTo|date:sub.dateDisplay }}</span>{% elif sub.dateFrom %}<span class="dateTo present">Present</span>{% endif %}
