@@ -1,0 +1,30 @@
+version: '3'
+services:
+  nginx:
+    image: jwilder/nginx-proxy
+    ports:
+      - "8000:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  db:
+    image: postgres
+    volumes:
+      - ./jsutlovic.sql:/docker-entrypoint-initdb.d/jero_jsutlovic.sql
+    environment:
+      POSTGRES_USER: jero
+      POSTGRES_PASSWORD: garbage
+  web:
+    build: .
+    volumes:
+      - .:/app
+      - ./media:/public/media
+      - ./static:/public/static
+    ports:
+      - "3031:3031"
+    environment:
+      DATABASE_URL: "postgres://jero:garbage@db/jero_jsutlovic"
+      VIRTUAL_HOST: "test.jsutlovic.com"
+      VIRTUAL_PROTO: "uwsgi"
+    depends_on:
+      - nginx
+      - db
